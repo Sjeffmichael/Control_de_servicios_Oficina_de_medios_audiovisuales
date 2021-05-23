@@ -70,13 +70,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_registrarse"
         android:layout_width="280dp"
         android:layout_height="43dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="80dp"
         android:background="#000000"
-        android:text="@string/button_acceder"
+        android:text="@string/button_registrarse"
         android:textColor="#FFFFFF"
         app:backgroundTint="@color/azul_uni"
         app:layout_constraintStart_toStartOf="parent"

@@ -17,4 +17,11 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+    //Cambiar color a negro del textView Registrarse cada que se abre el activity
+    override fun onStart() {
+        super.onStart()
+        val textView_registrarse: TextView = findViewById(R.id.textView_registrarse)
+        textView_registrarse.setTextColor(Color.parseColor("#000000"))
+    }
+
 }

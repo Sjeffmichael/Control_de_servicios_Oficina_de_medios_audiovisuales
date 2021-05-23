@@ -10,7 +10,8 @@
     <string name="imageView_Logo">Logo</string>
     <string name="textInput_usuario">usuario</string>
     <string name="textInput_contrasena">contraseña</string>
-    <string name="button_acceder">acceder</string>
+    <string name="button_acceder">Acceder</string>
     <string name="textview_registrarse">Registrarse</string>
     <string name="textInput_contrasena_confirmar">confirmar contraseña</string>
+    <string name="button_registrarse">Registrarse</string>
 </resources>
