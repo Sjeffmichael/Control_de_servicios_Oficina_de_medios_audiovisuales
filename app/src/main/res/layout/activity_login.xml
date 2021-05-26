@@ -2,30 +2,34 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageView_Logo"
         android:layout_width="233dp"
         android:layout_height="209dp"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="90dp"
         android:contentDescription="@string/imageView_Logo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_uni__1___1_" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_usuario"
-        android:layout_width="355dp"
+        android:layout_width="320dp"
         android:layout_height="56dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="28dp"
+        app:boxBackgroundColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_Logo"
-        app:boxBackgroundColor="#FFFFFF">
+        app:layout_constraintTop_toBottomOf="@+id/imageView_Logo">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -35,11 +39,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_contraseña"
-        android:layout_width="355dp"
+        android:layout_width="320dp"
         android:layout_height="56dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="28dp"
         app:boxBackgroundColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_usuario"
         app:passwordToggleEnabled="true">
@@ -52,15 +58,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/Acceder"
         android:layout_width="280dp"
         android:layout_height="43dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="67dp"
         android:background="#000000"
         android:text="@string/button_acceder"
         android:textColor="#FFFFFF"
         app:backgroundTint="@color/azul_uni"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_contraseña" />
 
@@ -68,9 +76,13 @@
         android:id="@+id/textView_registrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="170dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/textview_registrarse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/Acceder" />
 </androidx.constraintlayout.widget.ConstraintLayout>
