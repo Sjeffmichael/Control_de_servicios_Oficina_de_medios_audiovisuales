@@ -18,9 +18,11 @@ class PrincipalActivity : AppCompatActivity() {
         Nuevos.setOnClickListener{
             startActivity(Intent(this, NuevosActivity::class.java))
         }
+
         Entregados.setOnClickListener{
             startActivity(Intent(this, EntregadosActivity::class.java))
         }
+
         Espera.setOnClickListener{
             startActivity(Intent(this, EsperaActivity::class.java))
         }
