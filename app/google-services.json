@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "498074414560",
+    "project_id": "control-de-servicios-1b32e",
+    "storage_bucket": "control-de-servicios-1b32e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498074414560:android:4625c7e6c82988bf200f85",
+        "android_client_info": {
+          "package_name": "com.example.controldeservicios_oficinademediosaudiovisuales"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498074414560-9hcj48pkotarib4sd9up94ae7ug5no5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTP4rUQTxS3IcxFNmKytxjTdl0Jl6gz0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498074414560-9hcj48pkotarib4sd9up94ae7ug5no5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
