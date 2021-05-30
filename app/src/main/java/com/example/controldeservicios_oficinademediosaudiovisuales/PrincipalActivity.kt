@@ -4,9 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.E
 
 class PrincipalActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
@@ -14,6 +18,9 @@ class PrincipalActivity : AppCompatActivity() {
         val Nuevos:Button=findViewById(R.id.Ingresar_Registros)
         val Entregados:Button=findViewById(R.id.Ver_registros)
         val Espera:Button=findViewById(R.id.Registros_espera)
+        val Logout: Button = findViewById(R.id.button_logout)
+
+        auth = FirebaseAuth.getInstance()
 
         Nuevos.setOnClickListener{
             startActivity(Intent(this, NuevosActivity::class.java))
@@ -25,6 +32,12 @@ class PrincipalActivity : AppCompatActivity() {
 
         Espera.setOnClickListener{
             startActivity(Intent(this, EsperaActivity::class.java))
+        }
+
+        Logout.setOnClickListener{
+            auth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 }

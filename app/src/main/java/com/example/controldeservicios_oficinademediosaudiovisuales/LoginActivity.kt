@@ -66,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun action(){
         startActivity(Intent(this, PrincipalActivity::class.java))
+        finish()
     }
     //Cambiar color a negro del textView Registrarse cada que se abre el activity
     override fun onStart() {
