@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".RegistrarseActivity">
 
     <ImageView
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/logo_uni__1___1_" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout_usuarioC"
+        android:id="@+id/textInputLayout_idC"
         android:layout_width="320dp"
         android:layout_height="56dp"
         android:layout_marginStart="28dp"
@@ -32,9 +32,34 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView_LogoCrear">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_usario"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/textInput_usuario" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_usuarioC"
+        android:layout_width="320dp"
+        android:layout_height="83dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="28dp"
+        app:boxBackgroundColor="#FFFFFF"
+        app:counterEnabled="true"
+        app:counterMaxLength="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout_idC">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_id"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="@string/textLayoutHint_id"
+            android:inputType="number"
+            android:maxLength="4" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -42,15 +67,17 @@
         android:layout_width="320dp"
         android:layout_height="56dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="28dp"
         app:boxBackgroundColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_usuarioC"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_contrasena"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/textInput_contrasena"
@@ -62,15 +89,17 @@
         android:layout_width="320dp"
         android:layout_height="56dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="28dp"
         app:boxBackgroundColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout_contraseñaC"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_confContrasena"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/textInput_contrasena_confirmar"
