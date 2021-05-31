@@ -16,4 +16,8 @@
     <string name="button_registrarse">Registrarse</string>
     <string name="correo_text">correo</string>
     <string name="button_logout">Cerrar sesión</string>
+
+    <string name="Probando1">"Registro1"</string>
+    <string name="Probando2">Registro2</string>
+
 </resources>
