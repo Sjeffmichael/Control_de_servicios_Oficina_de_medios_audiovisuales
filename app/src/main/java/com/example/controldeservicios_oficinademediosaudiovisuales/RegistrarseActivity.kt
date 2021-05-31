@@ -43,7 +43,6 @@ class RegistrarseActivity : AppCompatActivity() {
 
         db = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
-
         dbReferences = db.reference.child("Usuarios")
 
 
@@ -96,6 +95,14 @@ class RegistrarseActivity : AppCompatActivity() {
     }
 
     private fun action(){
+        val db = FirebaseFirestore.getInstance()
+        //agregar datos a documento Usuarios
+        db.collection("usuarios").document(txtCorreo.text.toString()).set(
+                hashMapOf(
+                        "nombre" to findViewById<TextInputEditText>(R.id.editText_usario).text.toString(),
+                        "contraseña" to findViewById<TextInputEditText>(R.id.editText_contrasena).text.toString()
+                )
+        )
         startActivity(Intent(this, PrincipalActivity::class.java))
     }
 
