@@ -4,23 +4,42 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.E
 
 class PrincipalActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    //private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_principal)
+        setContentView(R.layout.menu_principal)
 
-        val Nuevos:Button=findViewById(R.id.Ingresar_Registros)
-        val Entregados:Button=findViewById(R.id.Ver_registros)
-        val Espera:Button=findViewById(R.id.Registros_espera)
-        val Logout: Button = findViewById(R.id.button_logout)
+        val bottonNavigation:BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
-        auth = FirebaseAuth.getInstance()
+        val fragmentoRegistros=EntregadosActivity()
+        val fragmentoEspera=EsperaActivity()
+        val fragmentoNuevoR=NuevosActivity()
+
+        setCurrentFragment(fragmentoRegistros)
+
+        bottonNavigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.Registros -> setCurrentFragment(fragmentoRegistros)
+                R.id.AgregarRegistro -> setCurrentFragment(fragmentoNuevoR)
+                R.id.Registro_en_espera -> setCurrentFragment(fragmentoEspera)
+            }
+            true
+        }
+
+        //val Nuevos:Button=findViewById(R.id.Ingresar_Registros)
+        //val Entregados:Button=findViewById(R.id.Ver_registros)
+        //val Espera:Button=findViewById(R.id.Registros_espera)
+        //val Logout: Button = findViewById(R.id.button_logout)
+
+        /*auth = FirebaseAuth.getInstance()
 
         Nuevos.setOnClickListener{
             startActivity(Intent(this, NuevosActivity::class.java))
@@ -39,5 +58,13 @@ class PrincipalActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+
+         */
     }
+
+    private fun setCurrentFragment(fragment:Fragment)=
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flfragment,fragment)
+            commit()
+        }
 }
