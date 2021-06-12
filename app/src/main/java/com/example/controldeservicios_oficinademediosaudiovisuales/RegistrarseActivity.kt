@@ -29,8 +29,6 @@ class RegistrarseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrarse)
 
@@ -44,22 +42,6 @@ class RegistrarseActivity : AppCompatActivity() {
         db = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
         dbReferences = db.reference.child("Usuarios")
-
-
-        /*val button_registrarse: Button = findViewById(R.id.button_registrarse)
-        val id: TextInputEditText = findViewById(R.id.editText_correo)
-        val usuario: TextInputEditText = findViewById(R.id.editText_usario)
-        val conatrasena: TextInputEditText = findViewById(R.id.editText_contrasena)
-        val confContrasena: TextInputEditText = findViewById(R.id.editText_confContrasena)
-        button_registrarse.setOnClickListener(){
-            db.collection("usuarios").document(id.text.toString()).set(
-                hashMapOf(
-                    "nombre" to findViewById<TextInputEditText>(R.id.editText_usario).text.toString(),
-                    "contraseña" to findViewById<TextInputEditText>(R.id.editText_contrasena).text.toString()
-                )
-            )
-
-        }*/
     }
 
     fun register(view: View){
@@ -78,8 +60,7 @@ class RegistrarseActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(correo, contrasena)
                 .addOnCompleteListener(this) {
                     task ->
-
-                    if(task.isComplete){
+                    if(task.isSuccessful){
                         val user:FirebaseUser? = auth.currentUser
                         verificarEmail(user)
 
@@ -89,6 +70,11 @@ class RegistrarseActivity : AppCompatActivity() {
                         //userDB.child("Contraseña").setValue(contrasena)
                         action()
 
+                    }
+                    else
+                    {
+                        Toast.makeText(this, "Error al registrarse", Toast.LENGTH_LONG).show()
+                        pbRegistrarse.visibility = View.GONE
                     }
                 }
         }
@@ -100,17 +86,18 @@ class RegistrarseActivity : AppCompatActivity() {
         db.collection("usuarios").document(txtCorreo.text.toString()).set(
                 hashMapOf(
                         "nombre" to findViewById<TextInputEditText>(R.id.editText_usario).text.toString(),
-                        "contraseña" to findViewById<TextInputEditText>(R.id.editText_contrasena).text.toString()
+                        //"contraseña" to findViewById<TextInputEditText>(R.id.editText_contrasena).text.toString()
                 )
         )
         startActivity(Intent(this, PrincipalActivity::class.java))
+        finish()
     }
 
     private fun verificarEmail(user: FirebaseUser?){
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this) {
                 task ->
-                if(task.isComplete){
+                if(task.isSuccessful){
                     Toast.makeText(this, "Registrado exitosamente", Toast.LENGTH_LONG).show()
                 }else{
                     Toast.makeText(this, "Error al registrarse", Toast.LENGTH_LONG).show()

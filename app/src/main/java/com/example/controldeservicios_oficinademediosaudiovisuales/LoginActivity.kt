@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
         Ingresar_Boton.setOnClickListener{
             loginUser()
+
         }
 
     }
@@ -54,12 +55,13 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) {
                     task ->
 
-                    if(task.isComplete){
+                    if(task.isSuccessful){
                         action()
                     }
                     else
                     {
                         Toast.makeText(this, "No se pudo iniciar seción", Toast.LENGTH_LONG).show()
+                        progressBar.visibility = View.GONE
                     }
                 }
         }

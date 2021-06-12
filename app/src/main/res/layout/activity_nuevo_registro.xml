@@ -10,19 +10,36 @@
         android:layout_height="wrap_content"
         tools:context=".NuevosActivity">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/Tipo_de_actividad"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            app:boxBackgroundColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listview">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_tipoActividad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Tipo de activida atendida" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="225dp"
             android:text="Equipo prestado"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Usuario" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_grupo" />
 
         <TextView
             android:id="@+id/textView2"
@@ -69,7 +86,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textView7"
+            android:id="@+id/textView_grupo"
             android:layout_width="320dp"
             android:layout_height="56dp"
             android:layout_marginStart="40dp"
@@ -81,6 +98,7 @@
             app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_grupo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Grupo" />
@@ -90,22 +108,22 @@
             android:id="@+id/Usuario"
             android:layout_width="320dp"
             android:layout_height="56dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="51dp"
+            android:layout_marginTop="72dp"
             app:boxBackgroundColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.439"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7">
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine_observacion">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editText_nombreDocente"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Nombre Del Docente" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkBox_dataShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -117,7 +135,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkBox_proyectorInteractivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="42dp"
@@ -125,11 +143,11 @@
             android:layout_marginEnd="51dp"
             android:text="Proyector interactivo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/checkBox4"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+            app:layout_constraintStart_toEndOf="@+id/checkBox_pizarraSmart"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_pc" />
 
         <CheckBox
-            android:id="@+id/checkBox4"
+            android:id="@+id/checkBox_pizarraSmart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -138,10 +156,10 @@
             android:text="Pizarra smart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_dataShow" />
 
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/checkBox_pc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
@@ -149,7 +167,7 @@
             android:layout_marginEnd="113dp"
             android:text="Pc portatil"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            app:layout_constraintStart_toEndOf="@+id/checkBox_dataShow"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Spinner
@@ -193,10 +211,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
-            android:textSize="20dp"
             android:text="Accesorios"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBox_proyectorInteractivo" />
 
         <Button
             android:id="@+id/AgregarBoton"
@@ -212,31 +230,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_texto" />
 
+        <ListView
+
+            android:id="@+id/listview"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:background="#B1DCFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AgregarBoton" />
+
         <Button
             android:id="@+id/NuevoRegistro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="100dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="88dp"
             android:text="Agregar Registro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.285"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Usuario" />
 
-            <ListView
-
-                android:id="@+id/listview"
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/NuevoRegistro"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AgregarBoton"
-                android:background="#B1DCFF"/>
+        <EditText
+            android:id="@+id/editTextTextMultiLine_observacion"
+            android:layout_width="320dp"
+            android:layout_height="88dp"
+            android:layout_marginTop="68dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="observación"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Tipo_de_actividad" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
