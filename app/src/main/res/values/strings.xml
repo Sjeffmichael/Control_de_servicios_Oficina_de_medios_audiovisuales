@@ -19,5 +19,6 @@
 
     <string name="Probando1">"Registro1"</string>
     <string name="Probando2">Registro2</string>
+    <string name="todo">TODO</string>
 
 </resources>
