@@ -90,7 +90,8 @@ class NuevosActivity : Fragment(R.layout.activity_nuevo_registro) {
                     "observacion" to view.findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
                     "nombre_docente" to obtenerEditText(view.findViewById(R.id.editText_nombreDocente)),
                     "email_tecnico" to auth?.email.toString(),
-                    "hora_inicio" to FieldValue.serverTimestamp()
+                    "hora_inicio" to FieldValue.serverTimestamp(),
+                    "hora_final" to null
 
                 )
             )
