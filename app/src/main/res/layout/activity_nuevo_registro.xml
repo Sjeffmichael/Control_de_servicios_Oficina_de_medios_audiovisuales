@@ -7,267 +7,272 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#3F51B5"
         tools:context=".NuevosActivity">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Tipo_de_actividad"
-            android:layout_width="320dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            app:boxBackgroundColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listview">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText_tipoActividad"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Tipo de activida atendida" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="225dp"
-            android:text="Equipo prestado"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_grupo" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="256dp"
-            android:text="Salon de uso"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="115dp"
-            android:layout_height="126dp"
-            android:layout_marginStart="40dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview1"
+            android:layout_width="0dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="256dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <RadioButton
-                android:id="@+id/AlaA"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
-                android:text="Ala A" />
-
-            <RadioButton
-                android:id="@+id/AlaB"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="10dp"
-                android:text="Ala B" />
-
-        </RadioGroup>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textView_grupo"
-            android:layout_width="320dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="51dp"
-            app:boxBackgroundColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText_grupo"
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Grupo" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="256dp"
+                android:text="Salon de uso"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/Usuario"
-            android:layout_width="320dp"
-            android:layout_height="56dp"
-            android:layout_marginTop="72dp"
-            app:boxBackgroundColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.439"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine_observacion">
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="115dp"
+                android:layout_height="126dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="100dp"
+                tools:ignore="MissingConstraints">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText_nombreDocente"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Nombre Del Docente" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <RadioButton
+                    android:id="@+id/AlaA"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Ala A" />
 
-        <CheckBox
-            android:id="@+id/checkBox_dataShow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="273dp"
-            android:text="Data show"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                <RadioButton
+                    android:id="@+id/AlaB"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Ala B" />
+            </RadioGroup>
 
-        <CheckBox
-            android:id="@+id/checkBox_proyectorInteractivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="51dp"
-            android:text="Proyector interactivo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/checkBox_pizarraSmart"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_pc" />
+            <CheckBox
+                android:id="@+id/Sala_multiples"
+                android:layout_width="178dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="52dp"
+                android:text="Sala de usos multiples"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/radioGroup"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/checkBox_pizarraSmart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="255dp"
-            android:text="Pizarra smart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_dataShow" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textView_grupo"
+                android:layout_width="300dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="260dp"
+                android:layout_marginEnd="51dp"
+                app:boxBackgroundColor="#FFFFFF">
 
-        <CheckBox
-            android:id="@+id/checkBox_pc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="113dp"
-            android:text="Pc portatil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/checkBox_dataShow"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_grupo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Grupo" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+        </androidx.cardview.widget.CardView>
 
-        <CheckBox
-            android:id="@+id/Sala_multiples"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="95dp"
-            android:layout_marginEnd="52dp"
-            android:text="Sala de usos multiples"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/radioGroup"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/spinner_texto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="29dp"
-            android:layout_marginEnd="100dp"
-            android:text="Accesorios"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="30dp"
-            android:text="Accesorios"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox_proyectorInteractivo" />
-
-        <Button
-            android:id="@+id/AgregarBoton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginBottom="20dp"
-            android:text="Agregar Accesorio"
-            app:layout_constraintBottom_toTopOf="@+id/listview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_texto" />
-
-        <ListView
-
-            android:id="@+id/listview"
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview2"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:background="#B1DCFF"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AgregarBoton" />
+            app:layout_constraintTop_toBottomOf="@+id/cardview1">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="225dp"
+                android:text="Equipo prestado"
+                android:textSize="20dp"
+                app:layout_constraintHorizontal_bias="0.0" />
+
+            <CheckBox
+                android:id="@+id/checkBox_dataShow"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="273dp"
+                android:text="Data show" />
+
+            <CheckBox
+                android:id="@+id/checkBox_pc"
+                android:layout_width="132dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="113dp"
+                android:text="Pc portatil" />
+
+            <CheckBox
+                android:id="@+id/checkBox_pizarraSmart"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginEnd="255dp"
+                android:text="Pizarra smart" />
+
+            <CheckBox
+                android:id="@+id/checkBox_proyectorInteractivo"
+                android:layout_width="177dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginEnd="51dp"
+                android:text="Proyector interactivo" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview3"
+            android:layout_width="0dp"
+            android:layout_height="460dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardview2">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:text="Accesorios"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                app:layout_constraintHorizontal_bias="1.0" />
+
+            <Button
+                android:id="@+id/AgregarBoton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="20dp"
+                android:text="Agregar Accesorio" />
+
+            <Button
+                android:id="@+id/eliminarBoton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="20dp"
+                android:text="Remover accesorio" />
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="200dp"
+                android:background="#B1DCFF" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview4"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardview3">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Tipo_de_actividad"
+                android:layout_width="300dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                app:boxBackgroundColor="#FFFFFF">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_tipoActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Tipo de activida atendida" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine_observacion"
+                android:layout_width="300dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="observación"
+                android:inputType="textMultiLine" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Usuario"
+                android:layout_width="300dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="220dp"
+                app:boxBackgroundColor="#FFFFFF"
+                app:layout_constraintHorizontal_bias="0.439">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_nombreDocente"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Nombre Del Docente" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/NuevoRegistro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="100dp"
-            android:layout_marginBottom="88dp"
+            android:layout_marginBottom="40dp"
             android:text="Agregar Registro"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.285"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Usuario" />
-
-        <EditText
-            android:id="@+id/editTextTextMultiLine_observacion"
-            android:layout_width="320dp"
-            android:layout_height="88dp"
-            android:layout_marginTop="68dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="observación"
-            android:inputType="textMultiLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Tipo_de_actividad" />
-
+            app:layout_constraintTop_toBottomOf="@id/cardview4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,29 +1,17 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
-import android.content.Intent
-import android.graphics.Color
-import android.os.Binder
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import android.widget.RadioGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ServerTimestamp
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
-import java.util.*
-import kotlin.collections.ArrayList
 
 class NuevosActivity : Fragment(R.layout.activity_nuevo_registro) {
 
@@ -32,17 +20,16 @@ class NuevosActivity : Fragment(R.layout.activity_nuevo_registro) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.activity_nuevo_registro, container, false)
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val Boton:Button=view.findViewById(R.id.AgregarBoton)
         val spinner: Spinner =view.findViewById(R.id.spinner)
-        val spinnertexto: TextView =view.findViewById(R.id.spinner_texto)
+        //val spinnertexto: TextView =view.findViewById(R.id.spinner_texto)
         val listview:ListView=view.findViewById(R.id.listview)
         val NuevoRegistro:Button=view.findViewById(R.id.NuevoRegistro)
-
+        val BotonE:Button=view.findViewById(R.id.eliminarBoton)
 
         val Objetos = arrayOf("Control remoto","Extensiones AC","Adaptador multiple","Cable de poder","Cable VGA","Cable USB","Cable Y",
             "Cargador de audio","Parlantes externos","Parlantes","Borrador","Lapices electronicos","Pantalla Smart","Tablero","Softwares",
@@ -50,7 +37,7 @@ class NuevosActivity : Fragment(R.layout.activity_nuevo_registro) {
 
         val objetoAdapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item,Objetos)
 
-      spinner.adapter=objetoAdapter
+        spinner.adapter=objetoAdapter
 
         spinner.onItemSelectedListener=object :
             AdapterView.OnItemSelectedListener{
@@ -59,14 +46,42 @@ class NuevosActivity : Fragment(R.layout.activity_nuevo_registro) {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                spinnertexto.text=Objetos[position]
+                //spinnertexto.text = Objetos[position]
+                //texto = spinner.getSelectedItem().toString()
             }
 
         }
         Boton.setOnClickListener() {
-            elementos.add(spinnertexto.text.toString())
-            listview.adapter=ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,elementos)
+            val texto:String = spinner.getSelectedItem().toString()
+            var band:Boolean=false
 
+            for(item in elementos){
+                if(item.toString().equals(texto)){
+                    band=true
+                }
+            }
+            if(band==false){
+                elementos.add(spinner.getSelectedItem().toString())
+            }
+            else {
+                Toast.makeText (context, "El elemento ya está en la lista" , Toast.LENGTH_SHORT).show()
+            }
+            listview.adapter=ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,elementos)
+        }
+
+        BotonE.setOnClickListener(){
+            val texto:String = spinner.getSelectedItem().toString()
+            var band:Boolean=false
+            for(item in elementos){
+                if(item.toString().equals(texto)){
+                    band=true
+                }
+            }
+            if(band==true){
+                elementos.remove(spinner.getSelectedItem().toString())
+                Toast.makeText (context, "Accesorio eliminado de la lista " , Toast.LENGTH_SHORT).show()
+            }
+            listview.adapter=ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,elementos)
         }
 
         NuevoRegistro.setOnClickListener() {
