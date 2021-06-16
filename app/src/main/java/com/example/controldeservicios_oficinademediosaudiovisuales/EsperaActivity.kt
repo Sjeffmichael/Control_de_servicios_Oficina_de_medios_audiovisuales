@@ -1,5 +1,6 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +22,7 @@ class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionReference: CollectionReference = db.collection("control_servicios")
 
-    var esperaAdapter: EsperaAdapter? = null;
+    var esperaAdapter: EsperaAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.activity_registros_espera, container, false)
@@ -32,15 +33,16 @@ class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
 
         setUpRecyclerView()
         view.findViewById<FloatingActionButton>(R.id.floatingActionButton_add).setOnClickListener(){
-            startActivity(Intent(requireContext(), RegistrarseActivity::class.java))
+            startActivity(Intent(requireContext(), NuevosActivity::class.java))
         }
     }
 
+    @SuppressLint("CutPasteId")
     fun setUpRecyclerView(){
         val query: Query = collectionReference
         val firestoreRecyclerOption: FirestoreRecyclerOptions<EsperaModelClass> =  FirestoreRecyclerOptions.Builder<EsperaModelClass>()
             .setQuery(query, EsperaModelClass::class.java)
-            .build();
+            .build()
 
         esperaAdapter = EsperaAdapter(firestoreRecyclerOption)
         view?.findViewById<RecyclerView>(R.id.recycler_view)?.layoutManager = LinearLayoutManager(requireContext())

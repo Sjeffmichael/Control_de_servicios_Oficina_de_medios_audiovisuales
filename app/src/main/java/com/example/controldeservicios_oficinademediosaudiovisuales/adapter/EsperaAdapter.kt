@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.controldeservicios_oficinademediosaudiovisuales.MainActivity
 import com.example.controldeservicios_oficinademediosaudiovisuales.R
 import com.example.controldeservicios_oficinademediosaudiovisuales.RegistrarseActivity
+import com.example.controldeservicios_oficinademediosaudiovisuales.RegistroEspera
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -48,7 +49,7 @@ class  EsperaAdapter(options: FirestoreRecyclerOptions<EsperaModelClass>) :
         init {
             itemView.setOnClickListener{ v: View ->
                 //val pos = adapterPosition
-                val intent = Intent(view.context, MainActivity::class.java)
+                val intent = Intent(view.context, RegistroEspera::class.java)
                 //intent.putExtra("pos", pos)
                 v.context.startActivity(intent)
             }

@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.E
 
+@Suppress("DEPRECATION")
 class PrincipalActivity : AppCompatActivity() {
 
     //private lateinit var auth: FirebaseAuth
@@ -21,14 +22,14 @@ class PrincipalActivity : AppCompatActivity() {
 
         val fragmentoRegistros=EntregadosActivity()
         val fragmentoEspera=EsperaActivity()
-        val fragmentoNuevoR=NuevosActivity()
+        //val fragmentoNuevoR=NuevosActivity()
 
         setCurrentFragment(fragmentoRegistros)
 
         bottonNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.Registros -> setCurrentFragment(fragmentoRegistros)
-                R.id.AgregarRegistro -> setCurrentFragment(fragmentoNuevoR)
+                //R.id.AgregarRegistro -> setCurrentFragment(fragmentoNuevoR)
                 R.id.Registro_en_espera -> setCurrentFragment(fragmentoEspera)
             }
             true
