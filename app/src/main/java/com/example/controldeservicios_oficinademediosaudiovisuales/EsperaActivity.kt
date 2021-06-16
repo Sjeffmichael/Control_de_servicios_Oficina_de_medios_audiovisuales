@@ -1,6 +1,6 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controldeservicios_oficinademediosaudiovisuales.adapter.EsperaAdapter
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
-import com.example.crearcuenta.adapter.ItemAdapater
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.CollectionReference
@@ -27,12 +26,13 @@ class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.activity_registros_espera, container, false)
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecyclerView()
         view.findViewById<FloatingActionButton>(R.id.floatingActionButton_add).setOnClickListener(){
-
+            startActivity(Intent(requireContext(), RegistrarseActivity::class.java))
         }
     }
 

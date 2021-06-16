@@ -1,6 +1,5 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales.adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Build
@@ -9,15 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.controldeservicios_oficinademediosaudiovisuales.MainActivity
 import com.example.controldeservicios_oficinademediosaudiovisuales.R
-import com.example.controldeservicios_oficinademediosaudiovisuales.RegistroEspera
+import com.example.controldeservicios_oficinademediosaudiovisuales.RegistrarseActivity
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import java.security.AccessController.getContext
 import java.util.*
 
 
@@ -50,11 +47,12 @@ class  EsperaAdapter(options: FirestoreRecyclerOptions<EsperaModelClass>) :
 
         init {
             itemView.setOnClickListener{ v: View ->
-                /*val pos = adapterPosition
-                val intent = Intent(requireContext(), RegistroEspera::class.java)
+                //val pos = adapterPosition
+                val intent = Intent(view.context, MainActivity::class.java)
                 //intent.putExtra("pos", pos)
-                v.context.startActivity(intent)*/
+                v.context.startActivity(intent)
             }
         }
+
     }
 }
