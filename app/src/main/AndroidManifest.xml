@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.controldeservicios_oficinademediosaudiovisuales">
 
     <application
@@ -16,7 +17,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/tema_personalizado">
+            android:theme="@style/splashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,10 +31,13 @@
 
         <activity
             android:name=".NuevosActivity"
-            android:theme="@style/tema_personalizado"/>
+            android:theme="@style/tema_personalizado"
+            tools:ignore="Instantiatable" />
 
-        <activity android:name=".EntregadosActivity" />
-        <activity android:name=".EsperaActivity" />
+        <activity android:name=".EntregadosActivity"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".EsperaActivity"
+            tools:ignore="Instantiatable" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
