@@ -20,7 +20,7 @@ import com.google.firebase.firestore.Query
 class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
 
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private val collectionReference: CollectionReference = db.collection("control_servicios")
+    private val collectionReference: CollectionReference = db.collection("control_servicios")//.orderBy("hora_inicio")
 
     var esperaAdapter: EsperaAdapter? = null
 
@@ -39,7 +39,7 @@ class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
 
     @SuppressLint("CutPasteId")
     fun setUpRecyclerView(){
-        val query: Query = collectionReference
+        val query: Query = collectionReference.orderBy("hora_inicio", Query.Direction.DESCENDING)
         val firestoreRecyclerOption: FirestoreRecyclerOptions<EsperaModelClass> =  FirestoreRecyclerOptions.Builder<EsperaModelClass>()
             .setQuery(query, EsperaModelClass::class.java)
             .build()
