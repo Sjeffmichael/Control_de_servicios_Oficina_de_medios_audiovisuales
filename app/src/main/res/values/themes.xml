@@ -17,8 +17,8 @@
     <!--Tema para quitar actionbar y dar color a la barra de notificaciones-->
     <style name="tema_personalizado" parent="Theme.ControlDeServiciosOficinaDeMediosAudiovisuales.NoActionBar">
         <item name="colorPrimary">@color/azul_uni</item>
-        <item name="colorPrimaryVariant">@color/white</item> <!--Color naranja-->
-        <item name="colorOnPrimary">#FFEB3B</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
 
         <item name="colorSecondary">@color/azul_uni</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>

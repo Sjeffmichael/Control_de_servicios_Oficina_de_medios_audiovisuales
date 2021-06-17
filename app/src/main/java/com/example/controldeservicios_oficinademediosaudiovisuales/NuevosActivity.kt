@@ -112,6 +112,8 @@ class NuevosActivity : AppCompatActivity() {
 
                 )
             )
+            Toast.makeText (this, "Registro guardado" , Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
     //Funcion para obtener la ala

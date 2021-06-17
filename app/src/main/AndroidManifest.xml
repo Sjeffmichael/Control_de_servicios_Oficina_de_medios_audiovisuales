@@ -35,7 +35,9 @@
         <activity
             android:name=".NuevosActivity"
             android:theme="@style/tema_personalizado"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable">
+
+        </activity>
 
         <activity android:name=".EntregadosActivity"
             tools:ignore="Instantiatable" />
