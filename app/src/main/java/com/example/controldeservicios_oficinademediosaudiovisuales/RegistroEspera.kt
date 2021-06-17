@@ -1,21 +1,14 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
-import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
+import android.util.Log
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.controldeservicios_oficinademediosaudiovisuales.adapter.EsperaAdapter
-import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 
 class RegistroEspera : AppCompatActivity() {
 
@@ -23,5 +16,23 @@ class RegistroEspera : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registrio_espera)
 
+        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+        var datos=""
+        val docente:TextView=findViewById(R.id.docente_Nombre)
+
+        db.collection("control_servicios")
+            .get()
+            .addOnSuccessListener { resultado->
+                for (documento in resultado){
+                    val nombre=documento["nombre_docente"].toString()
+                    //datos+="${documento.id}: ${documento.data}\n"
+                    datos+="${documento.id}: ${nombre}\n"
+                }
+                docente.text=datos
+            }
+            .addOnFailureListener{ exception ->
+                docente.text="No se ha podido conectar"
+            }
     }
 }

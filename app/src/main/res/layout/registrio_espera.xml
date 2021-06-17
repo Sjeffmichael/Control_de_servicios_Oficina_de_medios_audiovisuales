@@ -12,7 +12,7 @@
         tools:context=".RegistroEspera">
 
         <TextView
-            android:id="@+id/imagen_descripcion"
+            android:id="@+id/docente_Nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
