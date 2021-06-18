@@ -39,16 +39,24 @@ class RegistroEspera : AppCompatActivity() {
         var datos=""
         val docente:TextView=findViewById(R.id.docente_Nombre)
 
+
+        var pos= intent.getStringExtra("pos").toString()
+        Toast.makeText (this, pos.toString() , Toast.LENGTH_SHORT).show()
+
         db.collection("control_servicios")
             .get()
             .addOnSuccessListener { resultado->
-                for (documento in resultado){
-                    val nombre=documento["nombre_docente"].toString()
+
+                for (documento in resultado) {
+                    val nombre = documento["nombre_docente"].toString()
                     //datos+="${documento.id}: ${documento.data}\n"
-                    datos+="${documento.id}: ${nombre}\n"
+                    if(pos.toString() == nombre){
+                        datos+="${documento.id}: ${nombre}\n"
+                    }
                 }
                 docente.text=datos
             }
+
             .addOnFailureListener{ exception ->
                 docente.text="No se ha podido conectar"
             }*/
