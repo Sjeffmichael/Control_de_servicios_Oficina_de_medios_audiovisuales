@@ -208,10 +208,12 @@
                     android:layout_height="224dp"
                     android:layout_marginTop="100dp"
                     android:background="#003e9f"
+                    android:scrollbarSize="10dp"
+                    android:theme="@style/tema_personalizado"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.511"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner">
+                    app:layout_constraintTop_toBottomOf="@+id/spinner"
+                    tools:ignore="NestedScrolling">
 
                 </ListView>
 

@@ -68,7 +68,7 @@ class NuevosActivity : AppCompatActivity() {
             else {
                 Toast.makeText (this, "El elemento ya está en la lista" , Toast.LENGTH_SHORT).show()
             }
-            listview.adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,elementos)
+            listview.adapter=ArrayAdapter(this,R.layout.list_item,elementos)
         }
 
         BotonE.setOnClickListener(){
@@ -83,7 +83,7 @@ class NuevosActivity : AppCompatActivity() {
                 elementos.remove(spinner.getSelectedItem().toString())
                 Toast.makeText (this, "Accesorio eliminado de la lista " , Toast.LENGTH_SHORT).show()
             }
-            listview.adapter=ArrayAdapter(this,android.R.layout.simple_list_item_1,elementos)
+            listview.adapter=ArrayAdapter(this,R.layout.list_item,elementos)
         }
 
         NuevoRegistro.setOnClickListener() {
