@@ -2,11 +2,14 @@ package com.example.controldeservicios_oficinademediosaudiovisuales
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
@@ -18,13 +21,15 @@ class NuevosActivity : AppCompatActivity() {
 
     var elementos: MutableList<String> = mutableListOf()
 
-    //override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-     //   inflater.inflate(R.layout.activity_nuevo_registro, container, false)
-
-    //@RequiresApi(Build.VERSION_CODES.O)
+    @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_registro)
+
+        setSupportActionBar(findViewById(R.id.toolbar_nuevos))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val Boton:Button= findViewById(R.id.AgregarBoton)
         val spinner: Spinner =findViewById(R.id.spinner)
@@ -32,6 +37,22 @@ class NuevosActivity : AppCompatActivity() {
         val listview:ListView=findViewById(R.id.listview)
         val NuevoRegistro:Button=findViewById(R.id.NuevoRegistro)
         val BotonE:Button=findViewById(R.id.eliminarBoton)
+        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+        val nombre_docente = findViewById<AutoCompleteTextView>(R.id.editText_nombreDocente)
+        val lista_nombres: MutableList<String> = mutableListOf()
+
+        db.collection("control_servicios").get().addOnSuccessListener{
+            for(document in it){
+                if (document.getString("nombre_docente") !in lista_nombres){
+                    lista_nombres.add(document.getString("nombre_docente").toString())
+                }
+            }
+        }
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_nombres)
+        nombre_docente.threshold = 0
+        nombre_docente.setAdapter(adapter)
 
         val Objetos = arrayOf("Control remoto","Extensiones AC","Adaptador multiple","Cable de poder","Cable VGA","Cable USB","Cable Y",
             "Cargador de audio","Parlantes externos","Parlantes","Borrador","Lapices electronicos","Pantalla Smart","Tablero","Softwares",
@@ -53,8 +74,8 @@ class NuevosActivity : AppCompatActivity() {
             }
 
         }
-        Boton.setOnClickListener() {
-            val texto:String = spinner.getSelectedItem().toString()
+        Boton.setOnClickListener {
+            val texto:String = spinner.selectedItem.toString()
             var band =false
 
             for(item in elementos){
@@ -63,7 +84,7 @@ class NuevosActivity : AppCompatActivity() {
                 }
             }
             if(band==false){
-                elementos.add(spinner.getSelectedItem().toString())
+                elementos.add(spinner.selectedItem.toString())
             }
             else {
                 Toast.makeText (this, "El elemento ya está en la lista" , Toast.LENGTH_SHORT).show()
@@ -71,8 +92,8 @@ class NuevosActivity : AppCompatActivity() {
             listview.adapter=ArrayAdapter(this,R.layout.list_item,elementos)
         }
 
-        BotonE.setOnClickListener(){
-            val texto:String = spinner.getSelectedItem().toString()
+        BotonE.setOnClickListener {
+            val texto:String = spinner.selectedItem.toString()
             var band =false
             for(item in elementos){
                 if(item.equals(texto)){
@@ -80,13 +101,13 @@ class NuevosActivity : AppCompatActivity() {
                 }
             }
             if(band==true){
-                elementos.remove(spinner.getSelectedItem().toString())
+                elementos.remove(spinner.selectedItem.toString())
                 Toast.makeText (this, "Accesorio eliminado de la lista " , Toast.LENGTH_SHORT).show()
             }
             listview.adapter=ArrayAdapter(this,R.layout.list_item,elementos)
         }
 
-        NuevoRegistro.setOnClickListener() {
+        NuevoRegistro.setOnClickListener {
 
             val db = FirebaseFirestore.getInstance()
 
@@ -105,7 +126,7 @@ class NuevosActivity : AppCompatActivity() {
                     "accesorios" to elementos,
                     "tipo_actividad_atendida" to obtenerEditText(findViewById(R.id.editText_tipoActividad)),
                     "observacion" to findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
-                    "nombre_docente" to obtenerEditText(findViewById(R.id.editText_nombreDocente)),
+                    "nombre_docente" to nombre_docente.text.toString(),
                     "email_tecnico" to auth?.email.toString(),
                     "hora_inicio" to FieldValue.serverTimestamp(),
                     "hora_final" to null
@@ -116,6 +137,14 @@ class NuevosActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
+
+
     //Funcion para obtener la ala
     fun obtenerAla(radioGroupAla: RadioGroup):String{
         val radioId_ala = radioGroupAla.checkedRadioButtonId
