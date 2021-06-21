@@ -24,6 +24,12 @@ class RegistroEspera : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registrio_espera)
+
+        setSupportActionBar(findViewById(R.id.toolbar_registro))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
         //val objetoIntent: Intent = intent
         val pos = intent.getStringExtra("pos").toString()
@@ -52,40 +58,12 @@ class RegistroEspera : AppCompatActivity() {
                 tecnico.text=dato_tecnico
                 observacion.text=dato_observa
                 h_inicio.text= fecha
-                //Log.d("Datos doc: ", "$nombre")
-                Toast.makeText (this, nombre , Toast.LENGTH_SHORT).show()
+
             }
+    }
 
-        /*val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-        var datos=""
-        var dato_Grupo=""
-
-        val docente:TextView=findViewById(R.id.docente_Nombre)
-        val grupo:TextView=findViewById(R.id.grupo)
-
-        var pos= intent.getStringExtra("pos").toString()
-        Toast.makeText (this, pos.toString() , Toast.LENGTH_SHORT).show()
-
-        db.collection("control_servicios")
-            .get()
-            .addOnSuccessListener { resultado->
-
-                for (documento in resultado) {
-                    val nombre = documento["nombre_docente"].toString()
-                    val grupo = documento["grupo"].toString()
-                    //datos+="${documento.id}: ${documento.data}\n"
-                    if(pos.toString() == nombre){
-                        datos+="${documento.id}: ${nombre}\n"
-                        dato_Grupo+="${grupo}"
-                    }
-                }
-                docente.text=datos
-                grupo.text=dato_Grupo
-            }
-
-            .addOnFailureListener{ exception ->
-                docente.text="No se ha podido conectar"
-            }*/
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }
