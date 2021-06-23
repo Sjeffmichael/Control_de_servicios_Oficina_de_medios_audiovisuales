@@ -35,8 +35,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview1"
-                android:layout_width="401dp"
-                android:layout_height="200dp"
+                android:layout_width="396dp"
+                android:layout_height="260dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
@@ -50,22 +50,25 @@
 
                     <CheckBox
                         android:id="@+id/Sala_multiples"
-                        android:layout_width="178dp"
+                        android:layout_width="190dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginBottom="16dp"
                         android:text="Sala de usos multiples"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="51dp"
                         android:layout_height="27dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="24dp"
                         android:text="Lugar"
                         android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,8 +76,8 @@
                         android:id="@+id/radioGroup"
                         android:layout_width="115dp"
                         android:layout_height="127dp"
-                        android:layout_marginStart="60dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView2"
                         tools:ignore="MissingConstraints">
@@ -101,8 +104,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview2"
-                android:layout_width="398dp"
-                android:layout_height="208dp"
+                android:layout_width="396dp"
+                android:layout_height="324dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
@@ -117,11 +120,13 @@
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="154dp"
-                        android:layout_height="25dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="24dp"
                         android:text="Equipo prestado"
-                        android:textSize="20sp"
+                        android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,12 +144,11 @@
                         android:id="@+id/checkBox_pc"
                         android:layout_width="132dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="16dp"
                         android:text="Pc portatil"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.342"
-                        app:layout_constraintStart_toEndOf="@+id/checkBox_dataShow"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox_pizarraSmart" />
 
                     <CheckBox
                         android:id="@+id/checkBox_pizarraSmart"
@@ -160,10 +164,12 @@
                         android:id="@+id/checkBox_proyectorInteractivo"
                         android:layout_width="177dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="28dp"
+                        android:layout_marginStart="36dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         android:text="Proyector interactivo"
-                        app:layout_constraintStart_toEndOf="@+id/checkBox_pizarraSmart"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox_pc" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -171,7 +177,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview3"
-                android:layout_width="0dp"
+                android:layout_width="396dp"
                 android:layout_height="460dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
@@ -188,56 +194,70 @@
                         android:id="@+id/textView"
                         android:layout_width="112dp"
                         android:layout_height="31dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="24dp"
                         android:text="Accesorios"
-                        android:textSize="20sp"
+                        android:textSize="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.018"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="208dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="28dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-                    <Button
-                        android:id="@+id/AgregarBoton"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:text="Agregar Accesorio"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
                     <Button
                         android:id="@+id/eliminarBoton"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="20dp"
                         android:text="Remover accesorio"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
                     <ListView
                         android:id="@+id/listview"
                         android:layout_width="349dp"
                         android:layout_height="224dp"
-                        android:layout_marginTop="100dp"
+                        android:layout_marginTop="70dp"
                         android:background="@color/azul_uni2"
                         android:scrollbarSize="10dp"
                         android:theme="@style/tema_personalizado"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/spinner"
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
                         tools:ignore="NestedScrolling">
 
                     </ListView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="212dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="24dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:inputType="none"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imageButton_add"
+                        android:layout_width="41dp"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="85dp"
+                        android:background="#747474"
+                        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_baseline_add_24" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -245,8 +265,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview4"
-                android:layout_width="408dp"
-                android:layout_height="349dp"
+                android:layout_width="397dp"
+                android:layout_height="429dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
@@ -260,6 +280,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/Usuario"
+                        style="@style/Widget.Design.TextInputLayout"
                         android:layout_width="300dp"
                         android:layout_height="56dp"
                         android:layout_marginTop="16dp"
@@ -272,7 +293,28 @@
                             android:id="@+id/editText_nombreDocente"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Nombre Del Docente" />
+                            android:hint="Nombre del docente"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout_Carne_docente"
+                        style="@style/Widget.Design.TextInputLayout"
+                        android:layout_width="300dp"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="16dp"
+                        app:boxBackgroundColor="#FFFFFF"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Usuario">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/editText_carneDocente"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="Carné Del Docente"
+                            android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <EditText
@@ -289,6 +331,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView_grupo" />
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Design.TextInputLayout"
                         android:id="@+id/textView_grupo"
                         android:layout_width="300dp"
                         android:layout_height="56dp"
@@ -298,7 +341,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Tipo_de_actividad">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <AutoCompleteTextView
                             android:id="@+id/editText_grupo"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -306,6 +349,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Design.TextInputLayout"
                         android:id="@+id/Tipo_de_actividad"
                         android:layout_width="300dp"
                         android:layout_height="56dp"
@@ -315,7 +359,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <AutoCompleteTextView
                             android:id="@+id/editText_tipoActividad"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -335,12 +379,13 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="40dp"
-                android:text="Agregar Registro"
+                android:text="Guardar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.285"
+                app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardview4" />
+                app:layout_constraintTop_toBottomOf="@id/cardview4"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
