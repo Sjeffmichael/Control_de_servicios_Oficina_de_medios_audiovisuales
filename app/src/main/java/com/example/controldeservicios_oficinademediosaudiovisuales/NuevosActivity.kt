@@ -31,8 +31,8 @@ class NuevosActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val Boton:Button= findViewById(R.id.AgregarBoton)
-        val spinner: Spinner =findViewById(R.id.spinner)
+        val Boton:ImageButton= findViewById(R.id.imageButton_add)
+
         //val spinnertexto: TextView =view.findViewById(R.id.spinner_texto)
         val listview:ListView=findViewById(R.id.listview)
         val NuevoRegistro:Button=findViewById(R.id.NuevoRegistro)
@@ -40,42 +40,52 @@ class NuevosActivity : AppCompatActivity() {
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
         val nombre_docente = findViewById<AutoCompleteTextView>(R.id.editText_nombreDocente)
+        val tipo_activida = findViewById<AutoCompleteTextView>(R.id.editText_tipoActividad)
+        val grupo = findViewById<AutoCompleteTextView>(R.id.editText_grupo)
         val lista_nombres: MutableList<String> = mutableListOf()
+        val lista_tipoActividad: MutableList<String> = mutableListOf()
+        val lista_grupo: MutableList<String> = mutableListOf()
+        val accesorios = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
 
         db.collection("control_servicios").get().addOnSuccessListener{
             for(document in it){
                 if (document.getString("nombre_docente") !in lista_nombres){
                     lista_nombres.add(document.getString("nombre_docente").toString())
                 }
+                if(document.getString("tipo_actividad_atendida") !in lista_tipoActividad){
+                    lista_tipoActividad.add(document.getString("tipo_actividad_atendida").toString())
+                }
+                if(document.getString("grupo") !in lista_grupo){
+                    lista_grupo.add(document.getString("grupo").toString())
+                }
             }
         }
-
-        val adapter = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_nombres)
+        //Autocompletado del campo nombre del docente
+        val adapter_nombre_docente = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_nombres)
         nombre_docente.threshold = 0
-        nombre_docente.setAdapter(adapter)
+        nombre_docente.setAdapter(adapter_nombre_docente)
+
+        //Autocompletado del compo tipo actividad
+        val adapter_tipoActividad = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_tipoActividad)
+        tipo_activida.threshold = 0
+        tipo_activida.setAdapter(adapter_tipoActividad)
+
+        //Autocompletado del campo grupo
+        val adapter_grupo = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_grupo)
+        grupo.threshold = 0
+        grupo.setAdapter(adapter_grupo)
 
         val Objetos = arrayOf("Control remoto","Extensiones AC","Adaptador multiple","Cable de poder","Cable VGA","Cable USB","Cable Y",
             "Cargador de audio","Parlantes externos","Parlantes","Borrador","Lapices electronicos","Pantalla Smart","Tablero","Softwares",
             "Proyector smart","Cargador portatil","Cable HDMI")
 
-        val objetoAdapter = ArrayAdapter(this ,android.R.layout.simple_spinner_item,Objetos)
+        val objetoAdapter = ArrayAdapter(this , R.layout.list_item_2,Objetos)
+        accesorios.setAdapter(objetoAdapter)
+        accesorios.setText(Objetos[0], false)
 
-        spinner.adapter=objetoAdapter
 
-        spinner.onItemSelectedListener=object :
-            AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                //spinnertexto.text = Objetos[position]
-                //texto = spinner.getSelectedItem().toString()
-            }
-
-        }
         Boton.setOnClickListener {
-            val texto:String = spinner.selectedItem.toString()
+            val texto:String = accesorios.text.toString()//spinner.selectedItem.toString()
             var band =false
 
             for(item in elementos){
@@ -84,7 +94,7 @@ class NuevosActivity : AppCompatActivity() {
                 }
             }
             if(band==false){
-                elementos.add(spinner.selectedItem.toString())
+                elementos.add(accesorios.text.toString())
             }
             else {
                 Toast.makeText (this, "El elemento ya está en la lista" , Toast.LENGTH_SHORT).show()
@@ -93,7 +103,7 @@ class NuevosActivity : AppCompatActivity() {
         }
 
         BotonE.setOnClickListener {
-            val texto:String = spinner.selectedItem.toString()
+            val texto:String = accesorios.text.toString()
             var band =false
             for(item in elementos){
                 if(item.equals(texto)){
@@ -101,7 +111,7 @@ class NuevosActivity : AppCompatActivity() {
                 }
             }
             if(band==true){
-                elementos.remove(spinner.selectedItem.toString())
+                elementos.remove(accesorios.text.toString())
                 Toast.makeText (this, "Accesorio eliminado de la lista " , Toast.LENGTH_SHORT).show()
             }
             listview.adapter=ArrayAdapter(this,R.layout.list_item,elementos)
@@ -118,15 +128,16 @@ class NuevosActivity : AppCompatActivity() {
                 hashMapOf(
                     "ala" to obtenerAla(findViewById(R.id.radioGroup)),
                     "sala_usos_multiples" to obtenerCheckBox(findViewById(R.id.Sala_multiples)),
-                    "grupo" to obtenerEditText(findViewById(R.id.editText_grupo)),
                     "data_show" to obtenerCheckBox(findViewById(R.id.checkBox_dataShow)),
                     "pc_portatil" to obtenerCheckBox(findViewById(R.id.checkBox_pc)),
                     "pizarra_smart" to obtenerCheckBox(findViewById(R.id.checkBox_pizarraSmart)),
                     "proyector_interactivo" to obtenerCheckBox(findViewById(R.id.checkBox_proyectorInteractivo)),
                     "accesorios" to elementos,
-                    "tipo_actividad_atendida" to obtenerEditText(findViewById(R.id.editText_tipoActividad)),
+                    "tipo_actividad_atendida" to tipo_activida.text.toString(),
+                    "grupo" to grupo.text.toString(),
                     "observacion" to findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
                     "nombre_docente" to nombre_docente.text.toString(),
+                    "carne_docente" to findViewById<AutoCompleteTextView>(R.id.editText_carneDocente).text.toString(),
                     "email_tecnico" to auth?.email.toString(),
                     "hora_inicio" to FieldValue.serverTimestamp(),
                     "hora_final" to null
@@ -143,8 +154,6 @@ class NuevosActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
-
-
     //Funcion para obtener la ala
     fun obtenerAla(radioGroupAla: RadioGroup):String{
         val radioId_ala = radioGroupAla.checkedRadioButtonId
@@ -160,11 +169,4 @@ class NuevosActivity : AppCompatActivity() {
         val estado: Boolean = checkBoxAla.isChecked
         return estado
     }
-
-    //obterner datos de los editText
-    fun obtenerEditText(textInputEditText: TextInputEditText): String{
-        return textInputEditText.text.toString()
-    }
-
-
 }
