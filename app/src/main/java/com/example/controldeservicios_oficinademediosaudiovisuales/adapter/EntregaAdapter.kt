@@ -11,39 +11,37 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controldeservicios_oficinademediosaudiovisuales.R
 import com.example.controldeservicios_oficinademediosaudiovisuales.RegistroEspera
+import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EntregaModelClass
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import java.util.*
 
-
-class  EsperaAdapter(options: FirestoreRecyclerOptions<EsperaModelClass>) :
-    FirestoreRecyclerAdapter<EsperaModelClass, EsperaAdapter.EsperaAdapterVH>(options) {
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EsperaAdapterVH {
-        return EsperaAdapterVH(
+class EntregaAdapter(options: FirestoreRecyclerOptions<EntregaModelClass>) :
+        FirestoreRecyclerAdapter<EntregaModelClass, EntregaAdapter.EntregaAdapterVH>(options) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntregaAdapterVH {
+        return EntregaAdapterVH(
                 LayoutInflater.from(parent.context).inflate(
-                        R.layout.row_espera,
+                        R.layout.row_entrega,
                         parent,
                         false
                 )
         )
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: EsperaAdapterVH, position: Int, model: EsperaModelClass) {
+    override fun onBindViewHolder(holder: EntregaAdapterVH, position: Int, model: EntregaModelClass) {
         val sdf = SimpleDateFormat("MM/dd/yyyy h:mm a", Locale.US)
 
         holder.nombre_docente.text = model.nombre_docente
         holder.email_tecnico.text =  model.email_tecnico
-        holder.hora_inicio.text = sdf.format(model.hora_inicio?.toDate())
+        holder.hora_final.text = sdf.format(model.hora_final?.toDate())
         holder.id = model.id.toString()
     }
 
-    class EsperaAdapterVH(view: View) : RecyclerView.ViewHolder(view) {
-        var nombre_docente = view.findViewById<TextView>(R.id.nombre_docente)
-        var email_tecnico = view.findViewById<TextView>(R.id.email)
-        var hora_inicio = view.findViewById<TextView>(R.id.fecha)
+    class EntregaAdapterVH(view: View) : RecyclerView.ViewHolder(view) {
+        var nombre_docente = view.findViewById<TextView>(R.id.nombre_docente_entrega)
+        var email_tecnico = view.findViewById<TextView>(R.id.email_entrega)
+        var hora_final = view.findViewById<TextView>(R.id.fecha_entrega)
         var id = ""
 
 
