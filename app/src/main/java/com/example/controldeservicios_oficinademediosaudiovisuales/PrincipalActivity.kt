@@ -23,14 +23,12 @@ class PrincipalActivity : AppCompatActivity() {
 
         val fragmentoRegistros=EntregadosActivity()
         val fragmentoEspera=EsperaActivity()
-        //val fragmentoNuevoR=NuevosActivity()
 
         setCurrentFragment(fragmentoRegistros)
 
         bottonNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.Registros -> setCurrentFragment(fragmentoRegistros)
-                //R.id.AgregarRegistro -> setCurrentFragment(fragmentoNuevoR)
                 R.id.Registro_en_espera -> setCurrentFragment(fragmentoEspera)
             }
             true

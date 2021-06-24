@@ -345,7 +345,8 @@
                             android:id="@+id/editText_grupo"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Grupo" />
+                            android:hint="Grupo"
+                            android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -363,7 +364,8 @@
                             android:id="@+id/editText_tipoActividad"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Tipo de activida atendida" />
+                            android:hint="Tipo de activida atendida"
+                            android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

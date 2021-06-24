@@ -42,9 +42,9 @@ class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
 
     @SuppressLint("CutPasteId")
     fun setUpRecyclerView(){
-        val query: Query = collectionReference.orderBy("hora_inicio", Query.Direction.DESCENDING)
+        val query: Query = collectionReference.whereEqualTo("hora_final", null)//.orderBy("hora_inicio", Query.Direction.DESCENDING)
         val firestoreRecyclerOption: FirestoreRecyclerOptions<EsperaModelClass> =  FirestoreRecyclerOptions.Builder<EsperaModelClass>()
-                .setQuery(query,object : SnapshotParser<EsperaModelClass> {
+                .setQuery(query.orderBy("hora_inicio", Query.Direction.DESCENDING),object : SnapshotParser<EsperaModelClass> {
                     override fun parseSnapshot(snapshot: DocumentSnapshot): EsperaModelClass {
                         return snapshot.toObject(EsperaModelClass::class.java)!!.also {
                             it.id = snapshot.id
