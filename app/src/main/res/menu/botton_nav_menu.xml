@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/Registros"
-        android:icon="@drawable/ic_baseline_assignment_24"
+        android:icon="@drawable/ic_registros_entregados_foreground"
         android:title="Prestamos Realizados" />
 
     <!--<item

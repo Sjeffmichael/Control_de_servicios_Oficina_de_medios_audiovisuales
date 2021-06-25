@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="docente"
+
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="grupo"
+
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Lugar"
+
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="Tecnico"
+
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="observacion"
+
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -175,11 +175,126 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:text="hora de inicio"
+
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/texto6" />
+
+            <TextView
+                android:id="@+id/texto7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/azul_uni"
+                android:text="Actividad atendida"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hora_inicio" />
+
+            <TextView
+                android:id="@+id/Actividad_atendida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+
+                android:textColor="#000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/texto7" />
+
+            <TextView
+                android:id="@+id/texto8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/azul_uni"
+                android:text="Equipo prestado"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Actividad_atendida" />
+
+            <TextView
+                android:id="@+id/data_prestado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+
+                android:textColor="#000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/texto8" />
+
+            <!--
+            <TextView
+                android:id="@+id/pizarra_prestado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="pizarra"
+                android:textColor="#000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/data_prestado" />
+
+            <TextView
+                android:id="@+id/pc_prestado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="pc"
+                android:textColor="#000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pizarra_prestado" />
+
+            <TextView
+                android:id="@+id/proyector_prestado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="proyector"
+                android:textColor="#000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pc_prestado" />
+            -->
+
+            <TextView
+                android:id="@+id/texto9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/azul_uni"
+                android:text="Accesorios"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/data_prestado" />
+
+            <TextView
+                android:id="@+id/accesorios_prestados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+
+                android:textColor="#000"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/texto9" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

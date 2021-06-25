@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+import kotlin.collections.ArrayList
 
 class RegistroEspera : AppCompatActivity() {
 
@@ -41,16 +42,59 @@ class RegistroEspera : AppCompatActivity() {
         val tecnico:TextView=findViewById(R.id.tecnico)
         val observacion:TextView=findViewById(R.id.observacion)
         val h_inicio:TextView=findViewById(R.id.hora_inicio)
+        val actividad:TextView=findViewById(R.id.Actividad_atendida)
+        val datashow:TextView=findViewById(R.id.data_prestado)
+        //val pizarra:TextView=findViewById(R.id.pizarra_prestado)
+        //val pc:TextView=findViewById(R.id.pc_prestado)
+        //val proyector:TextView=findViewById(R.id.proyector_prestado)
+        val accesorios:TextView=findViewById(R.id.accesorios_prestados)
+        var datos=""
+        var equipos=""
+
         val sdf = SimpleDateFormat("MM/dd/yyyy h:mm a", Locale.US)
 
             db.collection("control_servicios").document(pos).get().addOnSuccessListener {
+
                 val nombre = it.getString("nombre_docente")
                 val dato_grupo = it.getString("grupo")
                 val dato_ala = it.getString("ala")
                 val dato_tecnico = it.getString("email_tecnico")
                 val dato_observa = it.getString("observacion")
+
                 val dato_h_inico = it.getTimestamp("hora_inicio")
                 val fecha:String =sdf.format(dato_h_inico?.toDate()).toString()
+
+                val act_atendida=it.getString("tipo_actividad_atendida")
+
+                val data = it.getBoolean("data_show")
+                val pizar = it.getBoolean("pizarra_smart")
+                val pc_prestada = it.getBoolean("pc_portatil")
+                val proy_prestado = it.getBoolean("proyector_interactivo")
+
+                var listaprestados: MutableList<String> = mutableListOf()
+
+                if(data!=false){
+                    listaprestados.add("Data show")
+                }
+                if(pizar!=false){
+                    listaprestados.add("Pizarra smart")
+                }
+                if(pc_prestada!=false){
+                    listaprestados.add("Pc portatil")
+                }
+                if(proy_prestado!=false){
+                    listaprestados.add("Proyector interactivo")
+                }
+
+                var lista = arrayListOf<String>()
+                lista = it.get("accesorios") as ArrayList<String>
+
+                for(doc in lista){
+                    datos+= "${doc}\n"
+                }
+                for(doc in listaprestados){
+                    equipos+= "${doc}\n"
+                }
 
                 docente.text=nombre
                 grupo.text=dato_grupo
@@ -58,7 +102,12 @@ class RegistroEspera : AppCompatActivity() {
                 tecnico.text=dato_tecnico
                 observacion.text=dato_observa
                 h_inicio.text= fecha
-
+                actividad.text=act_atendida
+                datashow.text=equipos
+                //pizarra.text=pizar.toString()
+                //pc.text=pc_prestada.toString()
+                //proyector.text=proy_prestado.toString()
+                accesorios.text = datos
             }
     }
 
