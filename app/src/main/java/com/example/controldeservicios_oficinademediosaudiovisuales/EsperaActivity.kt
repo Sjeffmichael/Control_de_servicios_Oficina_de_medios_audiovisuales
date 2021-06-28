@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.controldeservicios_oficinademediosaudiovisuales.R.id.recycler_view
 import com.example.controldeservicios_oficinademediosaudiovisuales.adapter.EsperaAdapter
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -20,7 +21,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
+class   EsperaActivity : Fragment(R.layout.activity_registros_espera) {
 
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionReference: CollectionReference = db.collection("control_servicios")
@@ -40,9 +41,8 @@ class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
         }
     }
 
-    @SuppressLint("CutPasteId")
     fun setUpRecyclerView(){
-        val query: Query = collectionReference.whereEqualTo("hora_final", null)//.orderBy("hora_inicio", Query.Direction.DESCENDING)
+        val query: Query = collectionReference.whereEqualTo("hora_final", null)
         val firestoreRecyclerOption: FirestoreRecyclerOptions<EsperaModelClass> =  FirestoreRecyclerOptions.Builder<EsperaModelClass>()
                 .setQuery(query.orderBy("hora_inicio", Query.Direction.DESCENDING),object : SnapshotParser<EsperaModelClass> {
                     override fun parseSnapshot(snapshot: DocumentSnapshot): EsperaModelClass {
@@ -52,10 +52,9 @@ class EsperaActivity : Fragment(R.layout.activity_registros_espera) {
                     }
                 })
                 .build()
-        /*.setQuery(query,EsperaModelClass::class.java)*/
         esperaAdapter = EsperaAdapter(firestoreRecyclerOption)
-        view?.findViewById<RecyclerView>(R.id.recycler_view)?.layoutManager = LinearLayoutManager(requireContext())
-        view?.findViewById<RecyclerView>(R.id.recycler_view)?.adapter = esperaAdapter
+        view?.findViewById<RecyclerView>(recycler_view)?.layoutManager = LinearLayoutManager(requireContext())
+        view?.findViewById<RecyclerView>(recycler_view)?.adapter = esperaAdapter
     }
 
     override fun onStart() {
