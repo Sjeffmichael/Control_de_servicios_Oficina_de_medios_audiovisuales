@@ -7,7 +7,7 @@
     android:fillViewport="true">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_registro"
+        android:id="@+id/toolbar_registro2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/azul_uni2"
@@ -24,17 +24,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_registro"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_registro2"
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
-            tools:context=".RegistroEspera">
+            tools:context=".RegistroFinalizado">
 
             <TextView
-                android:id="@+id/texto1"
+                android:id="@+id/tex1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/texto2"
+                android:id="@+id/tex2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -57,10 +57,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docente_Nombre" />
+                app:layout_constraintTop_toBottomOf="@+id/Mdocente_Nombre" />
 
             <TextView
-                android:id="@+id/texto3"
+                android:id="@+id/tex3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -70,10 +70,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/grupo" />
+                app:layout_constraintTop_toBottomOf="@+id/Mgrupo" />
 
             <TextView
-                android:id="@+id/texto11"
+                android:id="@+id/tex11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -83,10 +83,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Ala" />
+                app:layout_constraintTop_toBottomOf="@+id/MAla" />
 
             <TextView
-                android:id="@+id/texto4"
+                android:id="@+id/tex4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -96,10 +96,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sala_de_usos" />
+                app:layout_constraintTop_toBottomOf="@+id/Msala_de_usos" />
 
             <TextView
-                android:id="@+id/texto5"
+                android:id="@+id/tex5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -109,10 +109,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tecnico" />
+                app:layout_constraintTop_toBottomOf="@+id/Mtecnico" />
 
             <TextView
-                android:id="@+id/texto6"
+                android:id="@+id/tex6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -122,10 +122,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/observacion" />
+                app:layout_constraintTop_toBottomOf="@+id/Mobservacion" />
 
             <TextView
-                android:id="@+id/docente_Nombre"
+                android:id="@+id/Mdocente_Nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -134,10 +134,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto1" />
+                app:layout_constraintTop_toBottomOf="@+id/tex1" />
 
             <TextView
-                android:id="@+id/grupo"
+                android:id="@+id/Mgrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -146,10 +146,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto2" />
+                app:layout_constraintTop_toBottomOf="@+id/tex2" />
 
             <TextView
-                android:id="@+id/Ala"
+                android:id="@+id/MAla"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -157,10 +157,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto3" />
+                app:layout_constraintTop_toBottomOf="@+id/tex3" />
 
             <TextView
-                android:id="@+id/sala_de_usos"
+                android:id="@+id/Msala_de_usos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -168,10 +168,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto11" />
+                app:layout_constraintTop_toBottomOf="@+id/tex11" />
 
             <TextView
-                android:id="@+id/tecnico"
+                android:id="@+id/Mtecnico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -179,10 +179,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto4" />
+                app:layout_constraintTop_toBottomOf="@+id/tex4" />
 
             <TextView
-                android:id="@+id/observacion"
+                android:id="@+id/Mobservacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -190,10 +190,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto5" />
+                app:layout_constraintTop_toBottomOf="@+id/tex5" />
 
             <TextView
-                android:id="@+id/hora_inicio"
+                android:id="@+id/Mhora_inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -201,10 +201,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto6" />
+                app:layout_constraintTop_toBottomOf="@+id/tex6" />
 
             <TextView
-                android:id="@+id/texto7"
+                android:id="@+id/tex7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -214,10 +214,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hora_inicio" />
+                app:layout_constraintTop_toBottomOf="@+id/Mhora_inicio" />
 
             <TextView
-                android:id="@+id/Actividad_atendida"
+                android:id="@+id/MActividad_atendida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -225,10 +225,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto7" />
+                app:layout_constraintTop_toBottomOf="@+id/tex7" />
 
             <TextView
-                android:id="@+id/texto8"
+                android:id="@+id/tex8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -238,10 +238,10 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Actividad_atendida" />
+                app:layout_constraintTop_toBottomOf="@+id/MActividad_atendida" />
 
             <TextView
-                android:id="@+id/data_prestado"
+                android:id="@+id/Mdata_prestado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -249,48 +249,10 @@
                 android:textColor="#000"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/texto8" />
-
-            <!--
-            <TextView
-                android:id="@+id/pizarra_prestado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:text="pizarra"
-                android:textColor="#000"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/data_prestado" />
+                app:layout_constraintTop_toBottomOf="@id/tex8" />
 
             <TextView
-                android:id="@+id/pc_prestado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:text="pc"
-                android:textColor="#000"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pizarra_prestado" />
-
-            <TextView
-                android:id="@+id/proyector_prestado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:text="proyector"
-                android:textColor="#000"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pc_prestado" />
-            -->
-
-            <TextView
-                android:id="@+id/texto9"
+                android:id="@+id/tex9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -300,66 +262,21 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/data_prestado" />
+                app:layout_constraintTop_toBottomOf="@+id/Mdata_prestado" />
 
             <TextView
-                android:id="@+id/accesorios_prestados"
+                android:id="@+id/Maccesorios_prestados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:textColor="#000"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto9" />
-
-            <TextView
-                android:id="@+id/texto10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/azul_uni"
-                android:text="Numero de trabajador"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/accesorios_prestados" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/numero_docente"
-                style="@style/Widget.Design.TextInputLayout"
-                android:layout_width="300dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="30dp"
-                app:boxBackgroundColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/texto10">
-
-                <AutoCompleteTextView
-                    android:id="@+id/editText_carneDocente1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text=""
-                    android:hint="Numero de trabajador"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/Finalizar_registro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="32dp"
-                android:text="Entregar Registro"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/numero_docente" />
+                app:layout_constraintTop_toBottomOf="@+id/tex9" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

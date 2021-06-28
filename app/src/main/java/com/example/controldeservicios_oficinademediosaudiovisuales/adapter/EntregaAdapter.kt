@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controldeservicios_oficinademediosaudiovisuales.R
 import com.example.controldeservicios_oficinademediosaudiovisuales.RegistroEspera
+import com.example.controldeservicios_oficinademediosaudiovisuales.RegistroFinalizado
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EntregaModelClass
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
@@ -48,7 +49,7 @@ class EntregaAdapter(options: FirestoreRecyclerOptions<EntregaModelClass>) :
         init {
             itemView.setOnClickListener{ v: View ->
                 val id2 = id
-                val intent = Intent(view.context, RegistroEspera::class.java)
+                val intent = Intent(view.context, RegistroFinalizado::class.java)
                 intent.putExtra("pos",id2)
                 v.context.startActivity(intent)
 

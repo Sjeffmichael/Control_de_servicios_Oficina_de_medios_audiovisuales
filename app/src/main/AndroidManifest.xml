@@ -17,6 +17,9 @@
         <activity android:name=".RegistroEspera"
             android:theme="@style/tema_personalizado"></activity>
 
+        <activity android:name=".RegistroFinalizado"
+            android:theme="@style/tema_personalizado"></activity>
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"

@@ -16,10 +16,8 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
-
 class RegistroEspera : AppCompatActivity() {
 
-    var s=null
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,10 +103,10 @@ class RegistroEspera : AppCompatActivity() {
                 accesorios.text = datos
 
                 if(dato_sala==false){
-                    sala.text="En uso"
+                    sala.text="Si"
                 }
                 else{
-                    sala.text="Sin usar"
+                    sala.text="No"
                 }
                 base_carnet=carnet.toString()
             }
