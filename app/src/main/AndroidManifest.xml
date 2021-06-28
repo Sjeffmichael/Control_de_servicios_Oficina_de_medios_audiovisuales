@@ -41,7 +41,9 @@
         </activity>
 
         <activity android:name=".EntregadosActivity"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable">
+        </activity>
+
         <activity android:name=".EsperaActivity"
             tools:ignore="Instantiatable" />
         <meta-data

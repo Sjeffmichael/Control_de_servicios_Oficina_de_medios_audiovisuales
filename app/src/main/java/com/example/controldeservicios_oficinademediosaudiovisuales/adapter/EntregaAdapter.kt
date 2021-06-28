@@ -31,7 +31,8 @@ class EntregaAdapter(options: FirestoreRecyclerOptions<EntregaModelClass>) :
     }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: EntregaAdapterVH, position: Int, model: EntregaModelClass) {
-        val sdf = SimpleDateFormat("MM/dd/yyyy h:mm a", Locale.US)
+        val sdf = SimpleDateFormat("dd/MM/yyyy h:mm a", Locale.US)
+
 
         holder.nombre_docente.text = model.nombre_docente
         holder.email_tecnico.text =  model.email_tecnico

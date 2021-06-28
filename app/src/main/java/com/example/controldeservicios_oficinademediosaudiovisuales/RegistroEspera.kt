@@ -18,6 +18,7 @@ import java.util.*
 
 class RegistroEspera : AppCompatActivity() {
 
+    var s = null
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class RegistroEspera : AppCompatActivity() {
         var equipos=""
         var base_carnet=""
 
-        val sdf = SimpleDateFormat("MM/dd/yyyy h:mm a", Locale.US)
+        val sdf = SimpleDateFormat("dd/MM/yyyy h:mm a", Locale.US)
 
             db.collection("control_servicios").document(pos).get().addOnSuccessListener {
 
