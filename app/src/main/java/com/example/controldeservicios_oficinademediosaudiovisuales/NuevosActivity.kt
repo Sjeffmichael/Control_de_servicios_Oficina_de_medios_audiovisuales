@@ -1,9 +1,8 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
-import android.view.ViewParent
+import android.view.View.OnTouchListener
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -11,28 +10,26 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class NuevosActivity : AppCompatActivity() {
+class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
 
     var elementos: MutableList<String> = mutableListOf()
-
+    private var arrayAdapter:ArrayAdapter<String>?=null
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_registro)
-
+        //setContentView(R.layout.item_accesorios)
         setSupportActionBar(findViewById(R.id.toolbar_nuevos))
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val Boton:ImageButton= findViewById(R.id.imageButton_add)
-
         //val spinnertexto: TextView =view.findViewById(R.id.spinner_texto)
-        val listview:ListView=findViewById(R.id.listview)
+        val lista:ListView=findViewById(R.id.listview)
         val NuevoRegistro:Button=findViewById(R.id.NuevoRegistro)
-        val BotonE:Button=findViewById(R.id.eliminarBoton)
+        //val BotonE:Button=findViewById(R.id.eliminarBoton)
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-
         val nombre_docente = findViewById<AutoCompleteTextView>(R.id.editText_nombreDocente)
         val tipo_activida = findViewById<AutoCompleteTextView>(R.id.editText_tipoActividad)
         val grupo = findViewById<AutoCompleteTextView>(R.id.editText_grupo)
@@ -40,6 +37,19 @@ class NuevosActivity : AppCompatActivity() {
         val lista_tipoActividad: MutableList<String> = mutableListOf()
         val lista_grupo: MutableList<String> = mutableListOf()
         val accesorios = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
+        val scroll:ScrollView=findViewById(R.id.ScrollActivity)
+
+        //scroll del listview
+        scroll.setOnTouchListener(OnTouchListener { v, event ->
+            findViewById<View>(R.id.listview).parent
+                    .requestDisallowInterceptTouchEvent(false)
+            false
+        })
+
+        lista.setOnTouchListener(OnTouchListener { v, event ->
+            v.parent.requestDisallowInterceptTouchEvent(true)
+            false
+        })
 
         db.collection("control_servicios").get().addOnSuccessListener{
             for(document in it){
@@ -54,6 +64,7 @@ class NuevosActivity : AppCompatActivity() {
                 }
             }
         }
+
         //Autocompletado del campo nombre del docente
         val adapter_nombre_docente = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_nombres)
         nombre_docente.threshold = 0
@@ -74,12 +85,12 @@ class NuevosActivity : AppCompatActivity() {
                 "Proyector smart", "Cargador portatil", "Cable HDMI")
 
         val objetoAdapter = ArrayAdapter(this, R.layout.list_item_2, Objetos)
+
         accesorios.setAdapter(objetoAdapter)
         accesorios.setText(Objetos[0], false)
 
-
         Boton.setOnClickListener {
-            val texto:String = accesorios.text.toString()//spinner.selectedItem.toString()
+            val texto:String = accesorios.text.toString() //spinner.selectedItem.toString()
             var band =false
 
             for(item in elementos){
@@ -93,9 +104,12 @@ class NuevosActivity : AppCompatActivity() {
             else {
                 Toast.makeText(this, "El elemento ya está en la lista", Toast.LENGTH_SHORT).show()
             }
-            listview.adapter=ArrayAdapter(this, R.layout.list_item, elementos)
+            arrayAdapter=ArrayAdapter(applicationContext, android.R.layout.simple_list_item_multiple_choice, elementos)
+            lista?.adapter =arrayAdapter
+            lista?.choiceMode=ListView.CHOICE_MODE_MULTIPLE
+            lista?.onItemClickListener= this
         }
-        
+/*
         BotonE.setOnClickListener {
             val texto:String = accesorios.text.toString()
             var band =false
@@ -108,9 +122,9 @@ class NuevosActivity : AppCompatActivity() {
                 elementos.remove(accesorios.text.toString())
                 Toast.makeText(this, "Accesorio eliminado de la lista ", Toast.LENGTH_SHORT).show()
             }
-            listview.adapter=ArrayAdapter(this, R.layout.list_item, elementos)
+            //listview.adapter=ArrayAdapter(this, R.layout.list_item, elementos)
         }
-
+*/
         NuevoRegistro.setOnClickListener {
 
             val db = FirebaseFirestore.getInstance()
@@ -161,5 +175,25 @@ class NuevosActivity : AppCompatActivity() {
     fun obtenerCheckBox(checkBoxAla: CheckBox): Boolean{
         val estado: Boolean = checkBoxAla.isChecked
         return estado
+    }
+
+    override fun onItemClick(parent: AdapterView<*>, view: View?, position: Int, id: Long){
+        var items:String= parent?.getItemAtPosition(position) as String
+        Toast.makeText(this, "Accesorio eliminado de la lista ", Toast.LENGTH_SHORT).show()
+
+        val lista:ListView=findViewById(R.id.listview)
+
+        var band = false
+        for(item in elementos){
+            if(item==items){
+                band=true
+            }
+        }
+        if(band==true){
+            elementos.remove(items)
+            Toast.makeText(this, "Accesorio eliminado de la lista ", Toast.LENGTH_SHORT).show()
+        }
+        arrayAdapter=ArrayAdapter(applicationContext, android.R.layout.simple_list_item_multiple_choice, elementos)
+        lista?.adapter =arrayAdapter
     }
 }

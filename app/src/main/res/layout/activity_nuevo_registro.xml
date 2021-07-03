@@ -19,6 +19,7 @@
         />
 
     <ScrollView
+        android:id="@+id/ScrollActivity"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -203,6 +204,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <!--
                     <Button
                         android:id="@+id/eliminarBoton"
                         android:layout_width="150dp"
@@ -213,11 +215,13 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
+                    -->
+
                     <ListView
                         android:id="@+id/listview"
                         android:layout_width="349dp"
                         android:layout_height="224dp"
-                        android:layout_marginTop="70dp"
+                        android:layout_marginTop="40dp"
                         android:background="@color/azul_uni2"
                         android:scrollbarSize="10dp"
                         android:theme="@style/tema_personalizado"
