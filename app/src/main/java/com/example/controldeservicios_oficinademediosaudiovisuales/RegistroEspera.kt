@@ -1,24 +1,27 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
+import android.icu.text.DecimalFormat
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FieldValue.serverTimestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class RegistroEspera : AppCompatActivity() {
 
     var s = null
+    lateinit var dato_h_inico: com.google.firebase.Timestamp
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +53,8 @@ class RegistroEspera : AppCompatActivity() {
         var equipos=""
         var base_carnet=""
 
+
+
         val sdf = SimpleDateFormat("dd/MM/yyyy h:mm a", Locale.US)
 
             db.collection("control_servicios").document(pos).get().addOnSuccessListener {
@@ -60,8 +65,8 @@ class RegistroEspera : AppCompatActivity() {
                 val dato_tecnico = it.getString("email_tecnico")
                 val dato_observa = it.getString("observacion")
                 val carnet=it.getString("carne_docente")
-                val dato_h_inico = it.getTimestamp("hora_inicio")
-                val fecha:String =sdf.format(dato_h_inico?.toDate()).toString()
+                dato_h_inico = it.getTimestamp("hora_inicio") as com.google.firebase.Timestamp
+                val fecha:String =sdf.format(dato_h_inico.toDate()).toString()
                 val act_atendida=it.getString("tipo_actividad_atendida")
                 val data = it.getBoolean("data_show")
                 val pizar = it.getBoolean("pizarra_smart")
@@ -109,19 +114,24 @@ class RegistroEspera : AppCompatActivity() {
                 else{
                     sala.text="No"
                 }
+                //val millis: Long = cal.getTimeInMillis()
+
                 base_carnet=carnet.toString()
+
+
             }
 
         boton.setOnClickListener {
             val tex =findViewById<AutoCompleteTextView>(R.id.editText_carneDocente1).text.toString()
             val auth = FirebaseAuth.getInstance().currentUser
+            val myTimestampAsDate = Timestamp.now()
 
             if(base_carnet.toString().equals(tex.toString())){
+                db.collection("control_servicios").document(pos).update("hora_final", myTimestampAsDate, "total_horas",Math.round(((myTimestampAsDate.seconds.toFloat() - dato_h_inico.seconds.toFloat()) / 3600) * 100.0) / 100.0).addOnSuccessListener {
 
-                val d:CollectionReference
-                db.collection("control_servicios").document(pos).update("hora_final",FieldValue.serverTimestamp()).addOnSuccessListener {  }
+                }
 
-                Toast.makeText(this, "Registro Entregado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
                 finish()
             }
             else{

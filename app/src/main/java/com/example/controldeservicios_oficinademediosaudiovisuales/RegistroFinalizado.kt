@@ -101,10 +101,10 @@ class RegistroFinalizado : AppCompatActivity() {
             accesorios.text = datos
 
             if(dato_sala==false){
-                sala.text="Si"
+                sala.text="No"
             }
             else{
-                sala.text="No"
+                sala.text="Sí"
             }
         }
 
