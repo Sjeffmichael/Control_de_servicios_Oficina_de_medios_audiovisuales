@@ -148,7 +148,8 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                             "carne_docente" to findViewById<AutoCompleteTextView>(R.id.editText_carneDocente).text.toString(),
                             "email_tecnico" to auth?.email.toString(),
                             "hora_inicio" to FieldValue.serverTimestamp(),
-                            "hora_final" to null
+                            "hora_final" to null,
+                            "total_horas" to null
                     )
             )
             Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
