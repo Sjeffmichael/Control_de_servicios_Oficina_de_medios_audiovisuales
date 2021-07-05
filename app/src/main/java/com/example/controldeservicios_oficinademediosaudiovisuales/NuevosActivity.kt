@@ -1,6 +1,8 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.*
@@ -8,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.santalu.maskedittext.MaskEditText
+import java.util.*
 
 
 class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
@@ -32,12 +36,24 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
         val nombre_docente = findViewById<AutoCompleteTextView>(R.id.editText_nombreDocente)
         val tipo_activida = findViewById<AutoCompleteTextView>(R.id.editText_tipoActividad)
-        val grupo = findViewById<AutoCompleteTextView>(R.id.editText_grupo)
+        val grupo = findViewById<MaskEditText>(R.id.editText_grupo)
         val lista_nombres: MutableList<String> = mutableListOf()
         val lista_tipoActividad: MutableList<String> = mutableListOf()
         val lista_grupo: MutableList<String> = mutableListOf()
         val accesorios = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
-        val scroll:ScrollView=findViewById(R.id.ScrollActivity)
+        val scroll:ScrollView = findViewById(R.id.ScrollActivity)
+        val carnet_docente = findViewById<AutoCompleteTextView>(R.id.editText_carneDocente)
+        val alaA:RadioButton = findViewById(R.id.AlaA)
+        val alaB:RadioButton = findViewById(R.id.AlaB)
+        val datashow:CheckBox = findViewById(R.id.checkBox_dataShow)
+        val pizarra:CheckBox = findViewById(R.id.checkBox_pizarraSmart)
+        val pc:CheckBox = findViewById(R.id.checkBox_pc)
+        val proyector:CheckBox = findViewById(R.id.checkBox_proyectorInteractivo)
+        val ala:TextView=findViewById(R.id.textView2)
+        val equipo_prestado:TextView=findViewById(R.id.textView4)
+        val observacion:EditText=findViewById(R.id.editTextTextMultiLine_observacion)
+        val actividad:EditText=findViewById(R.id.editText_tipoActividad)
+
 
         //scroll del listview
         scroll.setOnTouchListener(OnTouchListener { v, event ->
@@ -76,9 +92,9 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         tipo_activida.setAdapter(adapter_tipoActividad)
 
         //Autocompletado del campo grupo
-        val adapter_grupo = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_grupo)
-        grupo.threshold = 0
-        grupo.setAdapter(adapter_grupo)
+        //val adapter_grupo = ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, lista_grupo)
+        //grupo.threshold = 0
+        //grupo.setAdapter(adapter_grupo)
 
         val Objetos = arrayOf("Control remoto", "Extensiones AC", "Adaptador multiple", "Cable de poder", "Cable VGA", "Cable USB", "Cable Y",
                 "Cargador de audio", "Parlantes externos", "Parlantes", "Borrador", "Lapices electronicos", "Pantalla Smart", "Tablero", "Softwares",
@@ -109,6 +125,63 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
             lista?.choiceMode=ListView.CHOICE_MODE_MULTIPLE
             lista?.onItemClickListener= this
         }
+
+        grupo.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(grupo.text.toString().equals("")){
+                    grupo.setError("campo obligatorio")
+                }
+                else
+                {
+
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+
+        nombre_docente.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(nombre_docente.text.toString().equals("")){
+                    nombre_docente.setError("campo obligatorio")
+                }
+                else
+                {
+
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+
+        carnet_docente.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(carnet_docente.text.toString().equals("")){
+                    carnet_docente.setError("campo obligatorio")
+                }
+                else
+                {
+
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
 /*
         BotonE.setOnClickListener {
             val texto:String = accesorios.text.toString()
@@ -125,35 +198,71 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
             //listview.adapter=ArrayAdapter(this, R.layout.list_item, elementos)
         }
 */
+        alaA.setOnClickListener{ ala.setError(null)}
+        alaB.setOnClickListener{ ala.setError(null)}
+        datashow.setOnClickListener { equipo_prestado.setError(null)}
+        pc.setOnClickListener {equipo_prestado.setError(null)}
+        proyector.setOnClickListener {equipo_prestado.setError(null)}
+        pizarra.setOnClickListener {equipo_prestado.setError(null)}
+
         NuevoRegistro.setOnClickListener {
-
+            var ver: Boolean = true
             val db = FirebaseFirestore.getInstance()
-
             val auth = FirebaseAuth.getInstance().currentUser
 
-            //Guarda los datos en la base de datos
-            db.collection("control_servicios").document().set(
-                    hashMapOf(
-                            "ala" to obtenerAla(findViewById(R.id.radioGroup)),
-                            "sala_usos_multiples" to obtenerCheckBox(findViewById(R.id.Sala_multiples)),
-                            "data_show" to obtenerCheckBox(findViewById(R.id.checkBox_dataShow)),
-                            "pc_portatil" to obtenerCheckBox(findViewById(R.id.checkBox_pc)),
-                            "pizarra_smart" to obtenerCheckBox(findViewById(R.id.checkBox_pizarraSmart)),
-                            "proyector_interactivo" to obtenerCheckBox(findViewById(R.id.checkBox_proyectorInteractivo)),
-                            "accesorios" to elementos,
-                            "tipo_actividad_atendida" to tipo_activida.text.toString(),
-                            "grupo" to grupo.text.toString(),
-                            "observacion" to findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
-                            "nombre_docente" to nombre_docente.text.toString(),
-                            "carne_docente" to findViewById<AutoCompleteTextView>(R.id.editText_carneDocente).text.toString(),
-                            "email_tecnico" to auth?.email.toString(),
-                            "hora_inicio" to FieldValue.serverTimestamp(),
-                            "hora_final" to null,
-                            "total_horas" to null
-                    )
-            )
-            Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
-            finish()
+            if (grupo.text.toString().equals("")) {
+                grupo.setError("campo obligatorio")
+                ver = false
+            }
+            if (nombre_docente.text.toString().equals("")) {
+                nombre_docente.setError("campo obligatorio")
+                ver = false
+            }
+            if (carnet_docente.text.toString().equals("")) {
+                carnet_docente.setError("campo obligatorio")
+                ver = false
+            }
+            if(alaA.isChecked==false && alaB.isChecked==false){
+                ala.setError("campo obligatorio")
+                ver = false
+            }
+            if(datashow.isChecked==false && pc.isChecked==false && pizarra.isChecked==false && proyector.isChecked==false){
+                equipo_prestado.setError("Seleccione al menos uno")
+                ver=false
+            }
+            if(actividad.text.toString().equals("")){
+                actividad.setError("Ingrese Actividad")
+                ver=false
+            }
+            if(observacion.text.toString().equals("") && ver==true){
+                observacion.setText("Sin observacion")
+            }
+
+            if (ver == true) {
+                //Guarda los datos en la base de datos
+                db.collection("control_servicios").document().set(
+                        hashMapOf(
+                                "ala" to obtenerAla(findViewById(R.id.radioGroup)),
+                                "sala_usos_multiples" to obtenerCheckBox(findViewById(R.id.Sala_multiples)),
+                                "data_show" to obtenerCheckBox(findViewById(R.id.checkBox_dataShow)),
+                                "pc_portatil" to obtenerCheckBox(findViewById(R.id.checkBox_pc)),
+                                "pizarra_smart" to obtenerCheckBox(findViewById(R.id.checkBox_pizarraSmart)),
+                                "proyector_interactivo" to obtenerCheckBox(findViewById(R.id.checkBox_proyectorInteractivo)),
+                                "accesorios" to elementos,
+                                "tipo_actividad_atendida" to tipo_activida.text.toString(),
+                                "grupo" to grupo.text.toString(),
+                                "observacion" to findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
+                                "nombre_docente" to nombre_docente.text.toString(),
+                                "carne_docente" to findViewById<AutoCompleteTextView>(R.id.editText_carneDocente).text.toString(),
+                                "email_tecnico" to auth?.email.toString(),
+                                "hora_inicio" to FieldValue.serverTimestamp(),
+                                "hora_final" to null,
+                                "total_horas" to null
+                        )
+                )
+                Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
     }
 

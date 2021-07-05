@@ -62,12 +62,15 @@
 
                     <TextView
                         android:id="@+id/textView2"
-                        android:layout_width="51dp"
+                        android:layout_width="120dp"
                         android:layout_height="27dp"
                         android:layout_marginStart="36dp"
                         android:layout_marginTop="24dp"
                         android:text="Lugar"
                         android:textSize="20dp"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:focusableInTouchMode="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +92,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="0dp"
                             android:layout_marginTop="10dp"
+                            android:focusable="true"
                             android:text="Ala A" />
 
                         <RadioButton
@@ -96,6 +100,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="0dp"
+                            android:focusable="true"
                             android:layout_marginTop="10dp"
                             android:text="Ala B" />
                     </RadioGroup>
@@ -120,12 +125,15 @@
 
                     <TextView
                         android:id="@+id/textView4"
-                        android:layout_width="154dp"
+                        android:layout_width="220dp"
                         android:layout_height="27dp"
                         android:layout_marginStart="36dp"
                         android:layout_marginTop="24dp"
                         android:text="Equipo prestado"
                         android:textSize="20dp"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:focusableInTouchMode="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -333,8 +341,9 @@
                         android:inputType="textMultiLine"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_grupo" />
+                        app:layout_constraintTop_toBottomOf="@+id/editText_grupo" />
 
+                    <!--
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.Design.TextInputLayout"
                         android:id="@+id/textView_grupo"
@@ -351,8 +360,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="Grupo"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            />
                     </com.google.android.material.textfield.TextInputLayout>
+                    -->
+
+                    <com.santalu.maskedittext.MaskEditText
+                        android:id="@+id/editText_grupo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Grupo"
+                        android:inputType="text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                            app:met_mask="###-###"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.Design.TextInputLayout"
