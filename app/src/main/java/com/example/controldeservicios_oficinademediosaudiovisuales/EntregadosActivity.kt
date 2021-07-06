@@ -3,6 +3,7 @@
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
@@ -32,7 +33,7 @@ import java.util.*
 
  class EntregadosActivity : Fragment(R.layout.activity_entregados) {
 
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+        private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionReference: CollectionReference = db.collection("control_servicios")
      lateinit var objetoAdapter2: ArrayAdapter<String>
 
@@ -102,6 +103,11 @@ import java.util.*
         //Boton de filtro
         view.findViewById<ImageButton>(R.id.imageButton_filtro).setOnClickListener{
             bottomSheetDialog.show()
+        }
+
+        //Boton reporte
+        view.findViewById<ImageButton>(R.id.imageButton_reporte).setOnClickListener{
+            startActivity(Intent(requireContext(), Activity_informes::class.java))
         }
 
         val f = DecimalFormat("00")
