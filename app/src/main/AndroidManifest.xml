@@ -3,26 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.controldeservicios_oficinademediosaudiovisuales">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ControlDeServiciosOficinaDeMediosAudiovisuales">
+        android:theme="@style/tema_personalizado">
+        <activity android:name=".Activity_informes">
 
-        <activity android:name=".RegistrarseActivity"
-            android:theme="@style/tema_personalizado"></activity>
-
-        <activity android:name=".item_activity"
-            android:theme="@style/tema_personalizado"></activity>
-
-        <activity android:name=".RegistroEspera"
-            android:theme="@style/tema_personalizado"></activity>
-
-        <activity android:name=".RegistroFinalizado"
-            android:theme="@style/tema_personalizado"></activity>
-
+        </activity>
+        <activity
+            android:name=".RegistrarseActivity"
+            android:theme="@style/tema_personalizado" />
+        <!--<activity
+            android:name=".item_activity"
+            android:theme="@style/tema_personalizado" />-->
+        <activity
+            android:name=".RegistroEspera"
+            android:theme="@style/tema_personalizado" />
+        <activity
+            android:name=".RegistroFinalizado"
+            android:theme="@style/tema_personalizado" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -33,22 +40,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" />
-
-        <activity android:name=".PrincipalActivity" android:theme="@style/tema_personalizado"/>
-
+        <activity
+            android:name=".PrincipalActivity"
+            android:theme="@style/tema_personalizado" />
         <activity
             android:name=".NuevosActivity"
-            android:theme="@style/tema_personalizado">
-        </activity>
-
-        <activity android:name=".EntregadosActivity"
-            tools:ignore="Instantiatable">
-        </activity>
-
-        <activity android:name=".EsperaActivity"
+            android:theme="@style/tema_personalizado"></activity>
+        <activity
+            android:name=".EntregadosActivity"
+            tools:ignore="Instantiatable"></activity>
+        <activity
+            android:name=".EsperaActivity"
             tools:ignore="Instantiatable" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

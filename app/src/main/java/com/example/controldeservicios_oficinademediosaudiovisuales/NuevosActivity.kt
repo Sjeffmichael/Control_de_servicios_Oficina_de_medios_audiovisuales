@@ -250,7 +250,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                                 "proyector_interactivo" to obtenerCheckBox(findViewById(R.id.checkBox_proyectorInteractivo)),
                                 "accesorios" to elementos,
                                 "tipo_actividad_atendida" to tipo_activida.text.toString(),
-                                "grupo" to grupo.text.toString(),
+                                "grupo" to grupo.text.toString().toUpperCase(),
                                 "observacion" to findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
                                 "nombre_docente" to nombre_docente.text.toString(),
                                 "carne_docente" to findViewById<AutoCompleteTextView>(R.id.editText_carneDocente).text.toString(),
