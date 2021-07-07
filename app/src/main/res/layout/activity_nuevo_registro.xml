@@ -232,7 +232,7 @@
                         android:layout_marginTop="40dp"
                         android:background="@color/azul_uni2"
                         android:scrollbarSize="10dp"
-                        android:theme="@style/tema_personalizado"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
@@ -351,6 +351,18 @@
                             />
                     </com.google.android.material.textfield.TextInputLayout>
                     -->
+<!--
+                    <com.santalu.maskedittext.MaskEditText
+                        android:id="@+id/editText_grupo"
+                        android:layout_width="300dp"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="16dp"
+                        android:hint="Grupo"
+                        app:boxBackgroundColor="#FFFFFF"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Tipo_de_actividad"
+                        app:met_mask=" ### - ### " />-->
 
                     <com.santalu.maskedittext.MaskEditText
                         android:id="@+id/editText_grupo"
@@ -359,11 +371,10 @@
                         android:layout_marginTop="16dp"
                         android:hint="Grupo"
                         android:inputType="text"
-                        app:boxBackgroundColor="#FFFFFF"
+                        app:met_mask="###-###"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Tipo_de_actividad"
-                        app:met_mask="###-###" />
+                        app:layout_constraintTop_toBottomOf="@+id/Tipo_de_actividad"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.Design.TextInputLayout"

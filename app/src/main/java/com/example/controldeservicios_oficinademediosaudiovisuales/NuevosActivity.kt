@@ -37,7 +37,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
         val nombre_docente = findViewById<AutoCompleteTextView>(R.id.editText_nombreDocente)
         val tipo_activida = findViewById<AutoCompleteTextView>(R.id.editText_tipoActividad)
-        val grupo = findViewById<MaskEditText>(R.id.editText_grupo)
+        val grupo:MaskEditText = findViewById(R.id.editText_grupo)
         val lista_nombres: MutableList<String> = mutableListOf()
         val lista_tipoActividad: MutableList<String> = mutableListOf()
         val lista_grupo: MutableList<String> = mutableListOf()
@@ -54,7 +54,6 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         val equipo_prestado:TextView=findViewById(R.id.textView4)
         //val observacion:EditText=findViewById(R.id.editTextTextMultiLine_observacion)
         val actividad:EditText=findViewById(R.id.editText_tipoActividad)
-
 
         //scroll del listview
         scroll.setOnTouchListener(OnTouchListener { v, event ->
