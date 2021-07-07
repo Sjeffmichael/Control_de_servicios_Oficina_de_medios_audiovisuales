@@ -127,6 +127,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
             lista?.onItemClickListener= this
         }
 
+        /*
         grupo.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -184,7 +185,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
 
         })
 
-/*
+
         BotonE.setOnClickListener {
             val texto:String = accesorios.text.toString()
             var band =false

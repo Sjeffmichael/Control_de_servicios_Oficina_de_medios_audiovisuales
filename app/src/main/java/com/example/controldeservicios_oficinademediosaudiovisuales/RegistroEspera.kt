@@ -130,25 +130,6 @@ class RegistroEspera : AppCompatActivity() {
 
             }
 
-        texto.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(texto.text.toString().equals("")){
-                    texto.setError("Campo vacio")
-                }
-                else
-                {
-
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-        })
-
 
         boton.setOnClickListener {
             val tex =findViewById<AutoCompleteTextView>(R.id.editText_carneDocente1).text.toString()
