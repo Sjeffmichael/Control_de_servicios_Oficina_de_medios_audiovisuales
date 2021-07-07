@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +16,7 @@ import kotlin.math.E
 @Suppress("DEPRECATION")
 class PrincipalActivity : AppCompatActivity() {
 
-    //private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +40,9 @@ class PrincipalActivity : AppCompatActivity() {
         //val Nuevos:Button=findViewById(R.id.Ingresar_Registros)
         //val Entregados:Button=findViewById(R.id.Ver_registros)
         //val Espera:Button=findViewById(R.id.Registros_espera)
-        //val Logout: Button = findViewById(R.id.button_logout)
+        //val Logout: ImageButton = findViewById(R.id.imageButton_Usuario)
 
-        /*auth = FirebaseAuth.getInstance()
-
+/*
         Nuevos.setOnClickListener{
             startActivity(Intent(this, NuevosActivity::class.java))
         }
@@ -61,7 +61,7 @@ class PrincipalActivity : AppCompatActivity() {
             finish()
         }
 
-         */
+*/
     }
 
     private fun setCurrentFragment(fragment:Fragment)=
