@@ -26,6 +26,8 @@
 
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:autofilledHighlight" tools:targetApi="o">@drawable/autofill_color</item>
+
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="Theme.ControlDeServiciosOficinaDeMediosAudiovisuales.NoActionBar">
@@ -34,9 +36,19 @@
     </style>
 
     <!--Tema para el splashScreen-->
-
     <style name="splashScreenTheme" parent="tema_personalizado">
+        <item name="colorPrimary">@color/azul_uni2</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/esquinas_redondeadas</item>
     </style>
 
     <style name="Theme.ControlDeServiciosOficinaDeMediosAudiovisuales.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

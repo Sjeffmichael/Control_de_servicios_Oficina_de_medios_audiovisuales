@@ -21,6 +21,8 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu_principal)
+        setSupportActionBar(findViewById(R.id.toolbar_menuPrincipal))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         val bottonNavigation:BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
@@ -62,6 +64,12 @@ class PrincipalActivity : AppCompatActivity() {
         }
 
 */
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_cuenta, menu)
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setCurrentFragment(fragment:Fragment)=
