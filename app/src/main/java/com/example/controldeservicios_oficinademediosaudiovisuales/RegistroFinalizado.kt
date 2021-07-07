@@ -41,9 +41,12 @@ class RegistroFinalizado : AppCompatActivity() {
         val tecnico:TextView=findViewById(R.id.Mtecnico)
         val observacion:TextView=findViewById(R.id.Mobservacion)
         val h_inicio:TextView=findViewById(R.id.Mhora_inicio)
+        val h_final:TextView=findViewById(R.id.Mhora_entrega)
         val actividad:TextView=findViewById(R.id.MActividad_atendida)
-        val datashow:TextView=findViewById(R.id.Mdata_prestado)
-        val accesorios:TextView=findViewById(R.id.Maccesorios_prestados)
+        //val datashow:TextView=findViewById(R.id.Mdata_prestado)
+        //val accesorios:TextView=findViewById(R.id.Maccesorios_prestados)
+        val Mostrar_equipo=findViewById<AutoCompleteTextView>(R.id.Mprestados_auto)
+        val Mostrar_accesorios = findViewById<AutoCompleteTextView>(R.id.Maccesorios_auto)
         var datos=""
         var equipos=""
         var base_carnet=""
@@ -58,7 +61,10 @@ class RegistroFinalizado : AppCompatActivity() {
             val dato_tecnico = it.getString("email_tecnico")
             val dato_observa = it.getString("observacion")
             val dato_h_inico = it.getTimestamp("hora_inicio")
+            val dato_h_entrega = it.getTimestamp("hora_final")
             val fecha:String =sdf.format(dato_h_inico?.toDate()).toString()
+            val fecha2:String=sdf.format(dato_h_entrega?.toDate()).toString()
+
             val act_atendida=it.getString("tipo_actividad_atendida")
             val data = it.getBoolean("data_show")
             val pizar = it.getBoolean("pizarra_smart")
@@ -96,9 +102,18 @@ class RegistroFinalizado : AppCompatActivity() {
             tecnico.text=dato_tecnico
             observacion.text=dato_observa
             h_inicio.text= fecha
+            h_final.text= fecha2
             actividad.text=act_atendida
-            datashow.text=equipos
-            accesorios.text = datos
+            //datashow.text=equipos
+            //accesorios.text = datos
+
+            val objetoAdapter = ArrayAdapter(this, R.layout.list_item_2, listaprestados)
+            Mostrar_equipo.setAdapter(objetoAdapter)
+            Mostrar_equipo.setText(listaprestados[0], false)
+
+            val objetoAdapter2 = ArrayAdapter(this, R.layout.list_item_2, lista)
+            Mostrar_accesorios.setAdapter(objetoAdapter2)
+            Mostrar_accesorios.setText(lista[0], false)
 
             if(dato_sala==false){
                 sala.text="No"

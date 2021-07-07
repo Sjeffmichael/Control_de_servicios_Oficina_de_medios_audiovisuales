@@ -51,7 +51,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         val proyector:CheckBox = findViewById(R.id.checkBox_proyectorInteractivo)
         val ala:TextView=findViewById(R.id.textView2)
         val equipo_prestado:TextView=findViewById(R.id.textView4)
-        val observacion:EditText=findViewById(R.id.editTextTextMultiLine_observacion)
+        //val observacion:EditText=findViewById(R.id.editTextTextMultiLine_observacion)
         val actividad:EditText=findViewById(R.id.editText_tipoActividad)
 
 
@@ -182,6 +182,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
             }
 
         })
+
 /*
         BotonE.setOnClickListener {
             val texto:String = accesorios.text.toString()
@@ -198,6 +199,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
             //listview.adapter=ArrayAdapter(this, R.layout.list_item, elementos)
         }
 */
+
         alaA.setOnClickListener{ ala.setError(null)}
         alaB.setOnClickListener{ ala.setError(null)}
         datashow.setOnClickListener { equipo_prestado.setError(null)}
@@ -234,10 +236,6 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                 actividad.setError("Ingrese Actividad")
                 ver=false
             }
-            if(observacion.text.toString().equals("") && ver==true){
-                observacion.setText("Sin observacion")
-            }
-
             if (ver == true) {
                 //Guarda los datos en la base de datos
                 db.collection("control_servicios").document().set(
@@ -251,7 +249,8 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                                 "accesorios" to elementos,
                                 "tipo_actividad_atendida" to tipo_activida.text.toString(),
                                 "grupo" to grupo.text.toString(),
-                                "observacion" to findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
+                                "observacion" to null,
+                                //findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
                                 "nombre_docente" to nombre_docente.text.toString(),
                                 "carne_docente" to findViewById<AutoCompleteTextView>(R.id.editText_carneDocente).text.toString(),
                                 "email_tecnico" to auth?.email.toString(),

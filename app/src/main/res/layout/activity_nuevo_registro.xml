@@ -279,7 +279,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview4"
                 android:layout_width="397dp"
-                android:layout_height="429dp"
+                android:layout_height="320dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
@@ -300,7 +300,7 @@
                         app:boxBackgroundColor="#FFFFFF"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine_observacion">
+                        app:layout_constraintTop_toBottomOf="@+id/editText_grupo">
 
                         <AutoCompleteTextView
                             android:id="@+id/editText_nombreDocente"
@@ -326,22 +326,9 @@
                             android:id="@+id/editText_carneDocente"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Carné Del Docente"
+                            android:hint="Numero de trabajador"
                             android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
-
-                    <EditText
-                        android:id="@+id/editTextTextMultiLine_observacion"
-                        android:layout_width="300dp"
-                        android:layout_height="88dp"
-                        android:layout_marginTop="16dp"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:hint="observación"
-                        android:inputType="textMultiLine"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editText_grupo" />
 
                     <!--
                     <com.google.android.material.textfield.TextInputLayout
@@ -367,12 +354,16 @@
 
                     <com.santalu.maskedittext.MaskEditText
                         android:id="@+id/editText_grupo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="300dp"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="16dp"
                         android:hint="Grupo"
                         android:inputType="text"
+                        app:boxBackgroundColor="#FFFFFF"
                         app:layout_constraintEnd_toEndOf="parent"
-                            app:met_mask="###-###"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Tipo_de_actividad"
+                        app:met_mask="###-###" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.Design.TextInputLayout"

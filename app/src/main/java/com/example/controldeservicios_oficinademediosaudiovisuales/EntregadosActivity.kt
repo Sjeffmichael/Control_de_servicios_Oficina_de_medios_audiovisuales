@@ -3,15 +3,14 @@
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.icu.text.DecimalFormat
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -24,17 +23,20 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.SnapshotParser
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.util.*
 
+
  class EntregadosActivity : Fragment(R.layout.activity_entregados) {
 
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val collectionReference: CollectionReference = db.collection("control_servicios")
      lateinit var objetoAdapter2: ArrayAdapter<String>
+     private lateinit var auth: FirebaseAuth
 
      var prestamosAdapter: EntregaAdapter? = null
 
@@ -52,12 +54,12 @@ import java.util.*
         val view1 = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
         val Objetos = arrayOf("Lugar", "Equipo prestado", "Accesorios", "Tipo de actividad", "Nombre del docente", "Grupo", "Email del ténico")
         val lugar = arrayOf("Ala A", "Ala B", "Sala de usos multiples")
-        val accesorios_lista = arrayOf("Control remoto","Extensiones AC","Adaptador multiple","Cable de poder","Cable VGA","Cable USB","Cable Y",
-                "Cargador de audio","Parlantes externos","Parlantes","Borrador","Lapices electronicos","Pantalla Smart","Tablero","Softwares",
-                "Proyector smart","Cargador portatil","Cable HDMI")
+        val accesorios_lista = arrayOf("Control remoto", "Extensiones AC", "Adaptador multiple", "Cable de poder", "Cable VGA", "Cable USB", "Cable Y",
+                "Cargador de audio", "Parlantes externos", "Parlantes", "Borrador", "Lapices electronicos", "Pantalla Smart", "Tablero", "Softwares",
+                "Proyector smart", "Cargador portatil", "Cable HDMI")
         val equipo_prestado = arrayOf("Data show", "Pizarra smart", "Pc portatil", "Proyector interactivo")
 
-        val objetoAdapter = ArrayAdapter(requireContext() , R.layout.list_item_2,Objetos)
+        val objetoAdapter = ArrayAdapter(requireContext(), R.layout.list_item_2, Objetos)
         val buscar_por = view1.findViewById<AutoCompleteTextView>(R.id.textView_accesorios_filtro)
         buscar_por.setAdapter(objetoAdapter)
         buscar_por.setText(Objetos[0], false)
@@ -65,6 +67,8 @@ import java.util.*
         val lista_tipoActividad: MutableList<String> = mutableListOf()
         val lista_grupo: MutableList<String> = mutableListOf()
         val lista_email: MutableList<String> = mutableListOf()
+
+        val logout:ImageButton=view.findViewById(R.id.imageButton_Usuario)
 
         val barra_buscador = view1.findViewById<AutoCompleteTextView>(R.id.textView_accesorios_buscador)
         setear_texto(lugar, barra_buscador, ArrayAdapter(requireContext(), R.layout.list_item_2, lugar))
@@ -87,6 +91,18 @@ import java.util.*
             }
         }
 
+        //logout
+        auth = FirebaseAuth.getInstance()
+
+        logout.setOnClickListener{
+            auth.signOut()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            activity?.onBackPressed()
+        }
+
+
+
+
         //Calendario
         lista_tipoActividad.sorted()
         val c = Calendar.getInstance()
@@ -108,12 +124,12 @@ import java.util.*
         //Boton para la fecha
         view1.findViewById<Button>(R.id.button_calendario).setOnClickListener {
             val datePicker = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-                inicio = "${f.format(mDay) }/${f.format(mMonth + 1)}/$mYear"
-                final = "${f.format(mDay + 1) }/${f.format(mMonth + 1)}/$mYear"
-                view1.findViewById<Button>(R.id.button_calendario).setText(inicio)
+                inicio = "${f.format(mDay)}/${f.format(mMonth + 1)}/$mYear"
+                final = "${f.format(mDay + 1)}/${f.format(mMonth + 1)}/$mYear"
+                view1.findViewById<Button>(R.id.button_calendario).text = inicio
             }, year, month, day)
-            datePicker.setButton(DialogInterface.BUTTON_NEUTRAL, "Quitar", DialogInterface.OnClickListener {
-                dialog, which ->  view1.findViewById<Button>(R.id.button_calendario).setText("Fecha")
+            datePicker.setButton(DialogInterface.BUTTON_NEUTRAL, "Quitar", DialogInterface.OnClickListener { dialog, which ->
+                view1.findViewById<Button>(R.id.button_calendario).text = "Fecha"
                 inicio = ""
                 final = ""
             })
@@ -129,11 +145,12 @@ import java.util.*
                     barra_buscador.text.toString() == "Ala B" -> setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null).whereEqualTo("ala", "B"), inicio, final)
                     else -> setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null).whereEqualTo("sala_usos_multiples", true), inicio, final)
                 }
-                buscar_por.text.toString() == "Equipo prestado" -> setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null).whereEqualTo(when{
+                buscar_por.text.toString() == "Equipo prestado" -> setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null).whereEqualTo(when {
                     barra_buscador.text.toString() == "Data show" -> "data_show"
                     barra_buscador.text.toString() == "Pizarra smart" -> "pizarra_smart"
                     barra_buscador.text.toString() == "Pc portatil" -> "pc_portatil"
-                    else -> "proyector_interactivo" }, true), inicio, final)
+                    else -> "proyector_interactivo"
+                }, true), inicio, final)
                 buscar_por.text.toString() == "Accesorios" -> setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null).whereArrayContains("accesorios", barra_buscador.text.toString()), inicio, final)
                 buscar_por.text.toString() == "Tipo de actividad" -> setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null).whereEqualTo("tipo_actividad_atendida", barra_buscador.text.toString()), inicio, final)
                 buscar_por.text.toString() == "Nombre del docente" -> setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null).whereEqualTo("nombre_docente", barra_buscador.text.toString()), inicio, final)
@@ -170,8 +187,8 @@ import java.util.*
      fun elegir_consulta(query: Query, inicio: String, final: String): Query{
          val dateFormat = SimpleDateFormat("dd/MM/yyyy")
        var query2 =  when{
-             inicio != "" && final != "" -> query.whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat.parse(inicio))).whereLessThan("hora_final", Timestamp(dateFormat.parse(final))).orderBy("hora_final",  Query.Direction.DESCENDING)
-            else -> query.orderBy("hora_final",  Query.Direction.DESCENDING)
+             inicio != "" && final != "" -> query.whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat.parse(inicio))).whereLessThan("hora_final", Timestamp(dateFormat.parse(final))).orderBy("hora_final", Query.Direction.DESCENDING)
+            else -> query.orderBy("hora_final", Query.Direction.DESCENDING)
          }
          return query2
      }

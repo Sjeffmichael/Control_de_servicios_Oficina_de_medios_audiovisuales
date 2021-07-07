@@ -17,8 +17,10 @@
     <string name="correo_text">correo</string>
     <string name="button_logout">Cerrar sesión</string>
 
-    <string name="Probando1">"Registro1"</string>
-    <string name="Probando2">Registro2</string>
+    <string name="correo"><font color='blue'>Correo</font>></string>
+
+    <string name="cerrar_sesion"><font color='blue'>Cerrar Sesion</font>></string>
+
     <string name="todo">TODO</string>
 
 </resources>
