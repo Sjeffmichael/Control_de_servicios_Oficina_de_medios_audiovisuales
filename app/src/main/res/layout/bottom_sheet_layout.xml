@@ -51,9 +51,10 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="165dp"
+        android:layout_height="82dp"
+        android:drawableTop="@drawable/ic_round_horizontal_rule_24"
+        android:gravity="center_horizontal"
         android:text="Buscador de prestamos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
