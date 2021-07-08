@@ -118,7 +118,7 @@
                 android:layout_marginTop="250dp"
                 android:background="@color/azul_uni"
                 android:gravity="center"
-                android:text="Sala de usos multiples"
+                android:text="Sala de usos múltiples"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -154,7 +154,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/azul_uni"
                     android:gravity="center"
-                    android:text="Email tecnico"
+                    android:text="Email del técnico"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -194,9 +194,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="170dp"
-                    android:gravity="center"
                     android:background="@color/azul_uni"
-                    android:text="Observacion"
+                    android:gravity="center"
+                    android:text="Observación"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 

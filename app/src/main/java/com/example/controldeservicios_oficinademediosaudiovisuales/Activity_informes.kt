@@ -85,12 +85,14 @@ class Activity_informes : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.button_generar).setOnClickListener {
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+            val dateFormat2 = SimpleDateFormat("dd/MM/yyyy h:mm a")
 
             when{
+                Timestamp(dateFormat2.parse("${button_fechaAtendidas.text.toString()} ${button_horaInicio.text.toString()}")) > Timestamp(dateFormat2.parse("${button_fechaAtendidas.text.toString()} ${button_horaFinal.text.toString()}")) -> Toast.makeText(this, "Hora final debe ser mayor a hora inicio", Toast.LENGTH_SHORT).show()
+                Timestamp(dateFormat.parse((button_inicio.text.toString()))) > Timestamp(dateFormat2.parse("${button_final.text.toString()} 11:59 PM")) -> Toast.makeText(this, "Fecha final debe ser mayor a fecha inicio", Toast.LENGTH_SHORT).show()
                 button_inicio.text.toString() == "Fecha inicio" || button_final.text.toString() == "Fecha final" || button_fechaAtendidas.text.toString() == "Fecha" || button_horaInicio.text.toString() == "Hora inicio" || button_horaFinal.text.toString() == "Hora final" -> Toast.makeText(this, "Debe seleccionar fechas y horas solicitadas", Toast.LENGTH_SHORT).show()
                 else -> {
-                    val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-                    val dateFormat2 = SimpleDateFormat("dd/MM/yyyy h:mm a")
                     db.collection("control_servicios").whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat.parse(button_inicio.text.toString()))).whereLessThanOrEqualTo("hora_final", Timestamp(dateFormat2.parse("${button_final.text.toString()} 11:59 PM"))).get().addOnSuccessListener{
                         var FEC = 0
                         var FARQ = 0
@@ -111,9 +113,15 @@ class Activity_informes : AppCompatActivity() {
                             }
                         }
 
+                        var i = 0
                         val extDir = Environment.getExternalStorageDirectory()
-                        val dir = extDir.getAbsolutePath() + "/reporte.xlsx"
-                        val newFile = File(dir)
+                        var dir = extDir.getAbsolutePath() + "/reporte_0.xlsx"
+                        var newFile = File(dir)
+                        while (newFile.exists()){
+                            i += 1
+                            dir = extDir.getAbsolutePath() + "/reporte_${i}.xlsx"
+                            newFile = File(dir)
+                        }
 
                         var xlWb = XSSFWorkbook()
                         val xlWs = xlWb.createSheet()
@@ -129,7 +137,7 @@ class Activity_informes : AppCompatActivity() {
                         xlWs.createRow(4).createCell(0).setCellValue("Total de horas atendidas el ${button_fechaAtendidas.text.toString()} de ${button_horaInicio.text.toString()} a ${button_horaFinal.text.toString()}")
 
                         val dateFormat = SimpleDateFormat("dd/MM/yyyy h:mm a")
-                        db.collection("control_servicios").whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat.parse("${button_fechaAtendidas.text.toString()} ${button_horaInicio.text.toString()}"))).whereLessThanOrEqualTo("hora_final", Timestamp(dateFormat.parse("${button_fechaAtendidas.text.toString()} ${button_horaFinal.text.toString()}"))).get().addOnSuccessListener{
+                        db.collection("control_servicios").whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat2.parse("${button_fechaAtendidas.text.toString()} ${button_horaInicio.text.toString()}"))).whereLessThanOrEqualTo("hora_final", Timestamp(dateFormat2.parse("${button_fechaAtendidas.text.toString()} ${button_horaFinal.text.toString()}"))).get().addOnSuccessListener{
                             var hora: Float = 0.0F
                             for (documento in it) {
                                 val horas = documento.getDouble("total_horas")?.toFloat()
@@ -137,8 +145,11 @@ class Activity_informes : AppCompatActivity() {
                                     hora += horas
                                 }
                             }
-                            Log.d("Dato","${(((hora) * 100.0) / 100.0)}")
-                            xlWs.createRow(5).createCell(0).setCellValue("${(((hora) * 100.0) / 100.0)}")
+
+                            //Log.d("Dato","${(((hora) * 100.0) / 100.0)}")
+                            //xlWs.createRow(5).createCell(0).setCellValue("${(((hora) * 100.0) / 100.0)}")
+                            Log.d("Dato", String.format("%.2f", hora))
+                            xlWs.createRow(5).createCell(0).setCellValue(String.format("%.2f", hora))
 
                             val output = FileOutputStream(newFile)
                             xlWb.write(output)

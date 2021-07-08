@@ -25,7 +25,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         //setContentView(R.layout.item_accesorios)
         setSupportActionBar(findViewById(R.id.toolbar_nuevos))
         supportActionBar?.setDisplayShowTitleEnabled(true)
-        supportActionBar?.title = "Nuevo prestamo"
+        supportActionBar?.title = "Nuevo préstamo"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -125,81 +125,6 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
             lista?.choiceMode=ListView.CHOICE_MODE_MULTIPLE
             lista?.onItemClickListener= this
         }
-
-        /*
-        grupo.addTextChangedListener(object:TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(grupo.text.toString().equals("")){
-                    grupo.setError("campo obligatorio")
-                }
-                else
-                {
-
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-        })
-
-        nombre_docente.addTextChangedListener(object:TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(nombre_docente.text.toString().equals("")){
-                    nombre_docente.setError("campo obligatorio")
-                }
-                else
-                {
-
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-        })
-
-        carnet_docente.addTextChangedListener(object:TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(carnet_docente.text.toString().equals("")){
-                    carnet_docente.setError("campo obligatorio")
-                }
-                else
-                {
-
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-        })
-
-
-        BotonE.setOnClickListener {
-            val texto:String = accesorios.text.toString()
-            var band =false
-            for(item in elementos){
-                if(item.equals(texto)){
-                    band=true
-                }
-            }
-            if(band==true){
-                elementos.remove(accesorios.text.toString())
-                Toast.makeText(this, "Accesorio eliminado de la lista ", Toast.LENGTH_SHORT).show()
-            }
-            //listview.adapter=ArrayAdapter(this, R.layout.list_item, elementos)
-        }
-*/
 
         alaA.setOnClickListener{ ala.setError(null)}
         alaB.setOnClickListener{ ala.setError(null)}

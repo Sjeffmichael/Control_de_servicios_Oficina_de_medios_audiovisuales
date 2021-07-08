@@ -117,7 +117,7 @@
                     android:layout_marginTop="250dp"
                     android:background="@color/azul_uni"
                     android:gravity="center"
-                    android:text="Sala de usos multiples"
+                    android:text="Sala de usos múltiples"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -149,9 +149,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:gravity="center"
                     android:background="@color/azul_uni"
-                    android:text="Email tecnico"
+                    android:gravity="center"
+                    android:text="Email del técnico"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -331,12 +331,12 @@
                     style="@style/Widget.Design.TextInputLayout"
                     android:layout_width="300dp"
                     android:layout_height="80dp"
-                    android:layout_marginTop="70dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="70dp"
                     android:ems="10"
                     android:gravity="start|top"
-                    android:hint="observación"
-                    android:inputType="textMultiLine"/>
+                    android:hint="Observación"
+                    android:inputType="textMultiLine" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/numero_docente"
