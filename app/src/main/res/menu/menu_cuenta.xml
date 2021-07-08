@@ -22,4 +22,5 @@
         android:icon="@drawable/ic_round_logout_24"
         android:title="Salir"
         app:showAsAction="always" />
+
 </menu>

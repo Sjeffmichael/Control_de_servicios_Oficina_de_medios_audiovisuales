@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.ScaleAnimation
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -84,6 +85,7 @@ class EntregaAdapter(options: FirestoreRecyclerOptions<EntregaModelClass>) :
         var nombre_docente = view.findViewById<TextView>(R.id.nombre_docente_entrega)
         var email_tecnico = view.findViewById<TextView>(R.id.email_entrega)
         var hora_final = view.findViewById<TextView>(R.id.fecha_entrega)
+        var borrar = view.findViewById<ImageButton>(R.id.imagen_borrar2)
         var id = ""
 
 
@@ -96,30 +98,27 @@ class EntregaAdapter(options: FirestoreRecyclerOptions<EntregaModelClass>) :
 
             }
 
-            itemView.setOnLongClickListener{ v:View->
+            borrar.setOnClickListener {
                 val id2 = id
 
                 val db = FirebaseFirestore.getInstance()
-
                 val builder = AlertDialog.Builder(view.context)
-                builder.setTitle("¿Estas seguro?")
+                builder.setTitle("¿Estás seguro?")
                 builder.setMessage("¿Quieres eliminar el registro?")
                 builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
-
                     db.collection("control_servicios").document(id2)
                             .delete()
                             .addOnSuccessListener {
                                 Toast.makeText(view.context, "Eliminado", Toast.LENGTH_SHORT).show()
                             }
                             .addOnFailureListener {
-                                Toast.makeText(view.context, "Fallo al eliminar", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(view.context, "fallo al eliminar", Toast.LENGTH_SHORT).show()
                             }
 
                 }
-                builder.setNegativeButton("No",{ dialogInterface: DialogInterface, i: Int -> })
-                builder.show()
 
-                return@setOnLongClickListener true
+                builder.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
+                builder.show()
             }
 
         }

@@ -67,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun action(){
+        val menu1 = 1
         val usuario:String = txtUsuario.text.toString()
         val intent = Intent(this, PrincipalActivity::class.java)
         intent.putExtra("pos",usuario)

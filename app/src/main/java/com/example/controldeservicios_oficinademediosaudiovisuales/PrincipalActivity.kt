@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.SubMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -28,10 +29,10 @@ class PrincipalActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar_menuPrincipal))
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        val bottonNavigation:BottomNavigationView = findViewById(R.id.bottomNavigationView)
+        val bottonNavigation: BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
-        val fragmentoRegistros=EntregadosActivity()
-        val fragmentoEspera=EsperaActivity()
+        val fragmentoRegistros = EntregadosActivity()
+        val fragmentoEspera = EsperaActivity()
 
         setCurrentFragment(fragmentoRegistros)
 
@@ -44,6 +45,7 @@ class PrincipalActivity : AppCompatActivity() {
             }
             true
         }
+
 
         //val Nuevos:Button=findViewById(R.id.Ingresar_Registros)
         //val Entregados:Button=findViewById(R.id.Ver_registros)

@@ -16,6 +16,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageButton
+            android:id="@+id/imagen_borrar2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="TODO"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_eliminar_foreground" />
+
         <TextView
             android:id="@+id/nombre_docente_entrega"
             android:layout_width="238dp"
