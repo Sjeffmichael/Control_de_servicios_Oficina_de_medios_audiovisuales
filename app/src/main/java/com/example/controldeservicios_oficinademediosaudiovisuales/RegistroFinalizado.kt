@@ -27,7 +27,8 @@ class RegistroFinalizado : AppCompatActivity() {
         setContentView(R.layout.activity_mostrar_entregados)
 
         setSupportActionBar(findViewById(R.id.toolbar_registro2))
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.title = "Prestamo"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

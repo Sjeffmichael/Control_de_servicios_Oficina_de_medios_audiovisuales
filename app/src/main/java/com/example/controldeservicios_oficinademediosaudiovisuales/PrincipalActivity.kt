@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.E
@@ -32,9 +33,11 @@ class PrincipalActivity : AppCompatActivity() {
         setCurrentFragment(fragmentoRegistros)
 
         bottonNavigation.setOnNavigationItemSelectedListener {
+
             when(it.itemId){
                 R.id.Registros -> setCurrentFragment(fragmentoRegistros)
                 R.id.Registro_en_espera -> setCurrentFragment(fragmentoEspera)
+
             }
             true
         }

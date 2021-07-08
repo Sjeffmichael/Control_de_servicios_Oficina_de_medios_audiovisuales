@@ -6,6 +6,8 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -30,10 +32,37 @@ class  EsperaAdapter(options: FirestoreRecyclerOptions<EsperaModelClass>) :
                 )
         )
     }
+
+    /*override fun populateViewHolder(viewHolder: EsperaAdapterVH, model: EsperaModelClass, position: Int) {
+        if(model.isRead) {
+            viewholder.updateBackground()
+        }
+    }*/
+
+    var mLastPosition = -1
+
+    fun setAnimation(viewToAnimate: View, position: Int) {
+        if (position > mLastPosition) {
+            val anim = ScaleAnimation(
+                0.0f,
+                1.0f,
+                0.0f,
+                1.0f,
+                Animation.RELATIVE_TO_SELF,
+                0.5f,
+                Animation.RELATIVE_TO_SELF,
+                0.5f
+            )
+            anim.duration = 500//Random().nextInt(501).toLong() //to make duration random number between [0,501)
+            viewToAnimate.startAnimation(anim)
+            mLastPosition = position
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: EsperaAdapterVH, position: Int, model: EsperaModelClass) {
         val sdf = SimpleDateFormat("dd/MM/yyyy h:mm a", Locale.US)
-
+        setAnimation(holder.itemView, position)
         holder.nombre_docente.text = model.nombre_docente
         holder.email_tecnico.text =  model.email_tecnico
         holder.hora_inicio.text = sdf.format(model.hora_inicio?.toDate())

@@ -25,7 +25,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         //setContentView(R.layout.item_accesorios)
         setSupportActionBar(findViewById(R.id.toolbar_nuevos))
         supportActionBar?.setDisplayShowTitleEnabled(true)
-        //supportActionBar?.title = "Nuevo prestamo"
+        supportActionBar?.title = "Nuevo prestamo"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -249,7 +249,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                                 "proyector_interactivo" to obtenerCheckBox(findViewById(R.id.checkBox_proyectorInteractivo)),
                                 "accesorios" to elementos,
                                 "tipo_actividad_atendida" to tipo_activida.text.toString(),
-                                "grupo" to grupo.text.toString(),
+                                "grupo" to grupo.text.toString().toUpperCase(),
                                 "observacion" to null,
                                 //findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
                                 "nombre_docente" to nombre_docente.text.toString(),
@@ -261,6 +261,8 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                         )
                 )
                 Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
+                val fragmentoEspera=EsperaActivity()
+                fragmentoEspera.setUpRecyclerView()
                 finish()
             }
         }

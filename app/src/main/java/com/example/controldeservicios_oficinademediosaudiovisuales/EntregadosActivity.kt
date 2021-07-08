@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.view.LayoutInflater
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -28,7 +29,6 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import java.util.*
 
 
  class EntregadosActivity : Fragment(R.layout.activity_entregados) {
@@ -40,8 +40,7 @@ import java.util.*
 
      var prestamosAdapter: EntregaAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.activity_entregados, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.activity_entregados, container, false)
 
     @SuppressLint("ResourceType")
     @RequiresApi(Build.VERSION_CODES.N)
@@ -100,9 +99,6 @@ import java.util.*
             activity?.onBackPressed()
         }
 
-
-
-
         //Calendario
         lista_tipoActividad.sorted()
         val c = Calendar.getInstance()
@@ -112,6 +108,7 @@ import java.util.*
 
         var inicio = ""
         var final = ""
+
 
         setUpRecyclerView(collectionReference.whereNotEqualTo("hora_final", null), inicio, final)
 
@@ -201,7 +198,7 @@ import java.util.*
      //Funcion para hacer consultas
      @RequiresApi(Build.VERSION_CODES.N)
      fun setUpRecyclerView(query: Query, inicio: String, final: String){
-             val firestoreRecyclerOption: FirestoreRecyclerOptions<EntregaModelClass> =  FirestoreRecyclerOptions.Builder<EntregaModelClass>()
+         val firestoreRecyclerOption: FirestoreRecyclerOptions<EntregaModelClass> =  FirestoreRecyclerOptions.Builder<EntregaModelClass>()
                      .setQuery(elegir_consulta(query, inicio, final), object : SnapshotParser<EntregaModelClass> {
                          override fun parseSnapshot(snapshot: DocumentSnapshot): EntregaModelClass {
                              return snapshot.toObject(EntregaModelClass::class.java)!!.also {
@@ -210,18 +207,32 @@ import java.util.*
                          }
                      })
                      .build()
-             prestamosAdapter = EntregaAdapter(firestoreRecyclerOption)
-             view?.findViewById<RecyclerView>(recycler_view_entregados)?.layoutManager = LinearLayoutManager(requireContext())
-             view?.findViewById<RecyclerView>(recycler_view_entregados)?.adapter = prestamosAdapter
+
+         prestamosAdapter = EntregaAdapter(firestoreRecyclerOption)
+         //runLayoutAnimation(view?.findViewById<RecyclerView>(recycler_view_entregados))
+         view?.findViewById<RecyclerView>(recycler_view_entregados)?.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+         view?.findViewById<RecyclerView>(recycler_view_entregados)?.adapter = prestamosAdapter
+
+     }
+     public var recyclerView1 = view?.findViewById<RecyclerView>(recycler_view_entregados)
+     fun runLayoutAnimation(recyclerView: RecyclerView?) {
+         val context = recyclerView?.getContext()
+         val animation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+         recyclerView?.setLayoutAnimation(animation)
+         recyclerView?.getAdapter()?.notifyDataSetChanged()
+         recyclerView?.scheduleLayoutAnimation()
      }
 
      override fun onStart() {
          super.onStart()
+         //runLayoutAnimation(view?.findViewById<RecyclerView>(recycler_view_entregados))
+         //view?.findViewById<RecyclerView>(recycler_view_entregados)?.scheduleLayoutAnimation()
          prestamosAdapter!!.startListening()
      }
 
      override fun onDestroy() {
          super.onDestroy()
+
          prestamosAdapter!!.stopListening()
      }
 }

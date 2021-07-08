@@ -29,7 +29,8 @@ class RegistroEspera : AppCompatActivity() {
         setContentView(R.layout.registrio_espera)
 
         setSupportActionBar(findViewById(R.id.toolbar_registro))
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.title = "Sin entregar"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

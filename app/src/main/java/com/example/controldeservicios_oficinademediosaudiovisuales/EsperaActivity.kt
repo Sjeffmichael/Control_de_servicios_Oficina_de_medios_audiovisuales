@@ -53,12 +53,16 @@ class   EsperaActivity : Fragment(R.layout.activity_registros_espera) {
                 })
                 .build()
         esperaAdapter = EsperaAdapter(firestoreRecyclerOption)
+
         view?.findViewById<RecyclerView>(recycler_view)?.layoutManager = LinearLayoutManager(requireContext())
+        //(view?.findViewById<RecyclerView>(recycler_view)?.scrollToPosition(view?.findViewById<RecyclerView>(recycler_view)?.adapter.itemCount() - 1)
         view?.findViewById<RecyclerView>(recycler_view)?.adapter = esperaAdapter
+        //view?.findViewById<RecyclerView>(recycler_view)?.adapter?.notifyDataSetChanged()
     }
 
     override fun onStart() {
         super.onStart()
+        //view?.findViewById<RecyclerView>(R.id.recycler_view)?.scheduleLayoutAnimation()
         esperaAdapter!!.startListening()
     }
 

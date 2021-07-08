@@ -39,7 +39,8 @@ class Activity_informes : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_informes)
         setSupportActionBar(findViewById(R.id.toolbar_informes))
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.title = "Nuevo reporte"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         System.setProperty(
@@ -111,12 +112,13 @@ class Activity_informes : AppCompatActivity() {
                         }
 
                         val extDir = Environment.getExternalStorageDirectory()
-                        val newFile = File(extDir.getAbsolutePath() + "/reporte4.xlsx")
+                        val dir = extDir.getAbsolutePath() + "/reporte.xlsx"
+                        val newFile = File(dir)
 
                         var xlWb = XSSFWorkbook()
                         val xlWs = xlWb.createSheet()
                         xlWs.addMergedRegion(CellRangeAddress(0, 0, 0, 2))
-                        xlWs.createRow(0).createCell(0).setCellValue("Prestamos por facultad")
+                        xlWs.createRow(0).createCell(0).setCellValue("Prestamos por facultad del ${button_inicio.text.toString()} al ${button_final.text.toString()}")
                         xlWs.createRow(1).createCell(0).setCellValue("FEC")
                         xlWs.getRow(1).createCell(1).setCellValue("FARQ")
                         xlWs.getRow(1).createCell(2).setCellValue("FIQ")
@@ -124,86 +126,30 @@ class Activity_informes : AppCompatActivity() {
                         xlWs.getRow(2).createCell(1).setCellValue("${FARQ}")
                         xlWs.getRow(2).createCell(2).setCellValue("${FIQ}")
 
-                        xlWs.createRow(4).createCell(0).setCellValue("Total de horas atendidas")
+                        xlWs.createRow(4).createCell(0).setCellValue("Total de horas atendidas el ${button_fechaAtendidas.text.toString()} de ${button_horaInicio.text.toString()} a ${button_horaFinal.text.toString()}")
 
                         val dateFormat = SimpleDateFormat("dd/MM/yyyy h:mm a")
                         db.collection("control_servicios").whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat.parse("${button_fechaAtendidas.text.toString()} ${button_horaInicio.text.toString()}"))).whereLessThanOrEqualTo("hora_final", Timestamp(dateFormat.parse("${button_fechaAtendidas.text.toString()} ${button_horaFinal.text.toString()}"))).get().addOnSuccessListener{
-                            var hora: Double = 0.0
+                            var hora: Float = 0.0F
                             for (documento in it) {
-                                val horas = documento.getDouble("total_horas")
+                                val horas = documento.getDouble("total_horas")?.toFloat()
                                 if (horas != null) {
                                     hora += horas
                                 }
                             }
-                            Log.d("Dato","${hora}")
-                            xlWs.createRow(5).createCell(0).setCellValue("${hora}")
+                            Log.d("Dato","${(((hora) * 100.0) / 100.0)}")
+                            xlWs.createRow(5).createCell(0).setCellValue("${(((hora) * 100.0) / 100.0)}")
 
                             val output = FileOutputStream(newFile)
                             xlWb.write(output)
                             output.close()
                             xlWb.close()
+                            Toast.makeText(this, "Guardado en ${dir}", Toast.LENGTH_SHORT).show()
                             finish()
                         }
                     }
                 }
             }
-
-            /*val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-            val dateFormat2 = SimpleDateFormat("dd/MM/yyyy h:mm a")
-            db.collection("control_servicios").whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat.parse(button_inicio.text.toString()))).whereLessThanOrEqualTo("hora_final", Timestamp(dateFormat2.parse("${button_final.text.toString()} 11:59 PM"))).get().addOnSuccessListener{
-                var FEC = 0
-                var FARQ = 0
-                var FIQ = 0
-
-                for(document in it){
-                    when{
-                        document.getString("grupo").toString().contains("CO") || document.getString("grupo").toString().contains("EO") || document.getString("grupo").toString().contains("TL") || document.getString("grupo").toString().contains("EL") -> FEC = FEC + 1
-                        document.getString("grupo").toString().contains("ARQ") -> FARQ = FARQ + 1
-                        document.getString("grupo").toString().contains("IQ") -> FIQ = FIQ + 1
-                    }
-                }
-
-                val permission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                for(item in permission){
-                    if (this.checkSelfPermission(item)!= PackageManager.PERMISSION_GRANTED){
-                        this.requestPermissions(permission, 101)
-                    }
-                }
-
-                val extDir = Environment.getExternalStorageDirectory()
-                val newFile = File(extDir.getAbsolutePath() + "/reporte4.xlsx")
-
-                var xlWb = XSSFWorkbook()
-                val xlWs = xlWb.createSheet()
-                xlWs.addMergedRegion(CellRangeAddress(0, 0, 0, 2))
-                xlWs.createRow(0).createCell(0).setCellValue("Prestamos por facultad")
-                xlWs.createRow(1).createCell(0).setCellValue("FEC")
-                xlWs.getRow(1).createCell(1).setCellValue("FARQ")
-                xlWs.getRow(1).createCell(2).setCellValue("FIQ")
-                xlWs.createRow(2).createCell(0).setCellValue("${FEC}")
-                xlWs.getRow(2).createCell(1).setCellValue("${FARQ}")
-                xlWs.getRow(2).createCell(2).setCellValue("${FIQ}")
-
-                xlWs.createRow(4).createCell(0).setCellValue("Total de horas atendidas")
-
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy h:mm a")
-                db.collection("control_servicios").whereGreaterThanOrEqualTo("hora_final", Timestamp(dateFormat.parse("${button_fechaAtendidas.text.toString()} ${button_horaInicio.text.toString()}"))).whereLessThanOrEqualTo("hora_final", Timestamp(dateFormat.parse("${button_fechaAtendidas.text.toString()} ${button_horaFinal.text.toString()}"))).get().addOnSuccessListener{
-                    var hora: Double = 0.0
-                    for (documento in it) {
-                        val horas = documento.getDouble("total_horas")
-                        if (horas != null) {
-                            hora += horas
-                        }
-                    }
-                    Log.d("Dato","${hora}")
-                    xlWs.createRow(5).createCell(0).setCellValue("${hora}")
-
-                    val output = FileOutputStream(newFile)
-                    xlWb.write(output)
-                    output.close()
-                    xlWb.close()
-                }
-            }*/
         }
     }
 
