@@ -1,5 +1,7 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales.adapter
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Build
@@ -10,6 +12,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.ScaleAnimation
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controldeservicios_oficinademediosaudiovisuales.R
@@ -17,6 +20,7 @@ import com.example.controldeservicios_oficinademediosaudiovisuales.RegistroFinal
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EntregaModelClass
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 
@@ -91,6 +95,33 @@ class EntregaAdapter(options: FirestoreRecyclerOptions<EntregaModelClass>) :
                 v.context.startActivity(intent)
 
             }
+
+            itemView.setOnLongClickListener{ v:View->
+                val id2 = id
+
+                val db = FirebaseFirestore.getInstance()
+
+                val builder = AlertDialog.Builder(view.context)
+                builder.setTitle("¿Estas seguro?")
+                builder.setMessage("¿Quieres eliminar el registro?")
+                builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
+
+                    db.collection("control_servicios").document(id2)
+                            .delete()
+                            .addOnSuccessListener {
+                                Toast.makeText(view.context, "Eliminado", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(view.context, "Fallo al eliminar", Toast.LENGTH_SHORT).show()
+                            }
+
+                }
+                builder.setNegativeButton("No",{ dialogInterface: DialogInterface, i: Int -> })
+                builder.show()
+
+                return@setOnLongClickListener true
+            }
+
         }
     }
 }

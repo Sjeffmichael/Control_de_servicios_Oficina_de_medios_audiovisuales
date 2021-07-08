@@ -1,14 +1,20 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales.adapter
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
+import android.nfc.Tag
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.controldeservicios_oficinademediosaudiovisuales.R
@@ -16,6 +22,9 @@ import com.example.controldeservicios_oficinademediosaudiovisuales.RegistroEsper
 import com.example.controldeservicios_oficinademediosaudiovisuales.datos.EsperaModelClass
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 
@@ -83,6 +92,35 @@ class  EsperaAdapter(options: FirestoreRecyclerOptions<EsperaModelClass>) :
                 intent.putExtra("pos",id2)
                 v.context.startActivity(intent)
 
+            }
+
+            //borrar registro de la base de datos
+
+            itemView.setOnLongClickListener{ v:View->
+                val id2 = id
+
+                val db = FirebaseFirestore.getInstance()
+
+                val builder = AlertDialog.Builder(view.context)
+                builder.setTitle("¿Estás seguro?")
+                builder.setMessage("¿Quieres eliminar el registro?")
+                builder.setPositiveButton("Si") { dialogInterface: DialogInterface, i: Int ->
+
+                    db.collection("control_servicios").document(id2)
+                            .delete()
+                            .addOnSuccessListener {
+                                Toast.makeText(view.context, "Eliminado", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(view.context, "fallo al eliminar", Toast.LENGTH_SHORT).show()
+                            }
+
+                }
+
+                builder.setNegativeButton("No",{ dialogInterface: DialogInterface, i: Int -> })
+                builder.show()
+
+                return@setOnLongClickListener true
             }
         }
 
