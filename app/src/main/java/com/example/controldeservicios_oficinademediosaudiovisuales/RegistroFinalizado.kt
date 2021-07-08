@@ -1,6 +1,7 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
 import android.icu.text.SimpleDateFormat
+import android.nfc.Tag
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class RegistroFinalizado : AppCompatActivity() {
@@ -42,6 +44,7 @@ class RegistroFinalizado : AppCompatActivity() {
         val observacion:TextView=findViewById(R.id.Mobservacion)
         val h_inicio:TextView=findViewById(R.id.Mhora_inicio)
         val h_final:TextView=findViewById(R.id.Mhora_entrega)
+        val h_atendidas:TextView=findViewById(R.id.total_atendidas)
         val actividad:TextView=findViewById(R.id.MActividad_atendida)
         //val datashow:TextView=findViewById(R.id.Mdata_prestado)
         //val accesorios:TextView=findViewById(R.id.Maccesorios_prestados)
@@ -62,9 +65,12 @@ class RegistroFinalizado : AppCompatActivity() {
             val dato_observa = it.getString("observacion")
             val dato_h_inico = it.getTimestamp("hora_inicio")
             val dato_h_entrega = it.getTimestamp("hora_final")
+
+            var dato_h_atendidas= it.get("total_horas")
+            var atendidas = dato_h_atendidas.toString()
+
             val fecha:String =sdf.format(dato_h_inico?.toDate()).toString()
             val fecha2:String=sdf.format(dato_h_entrega?.toDate()).toString()
-
             val act_atendida=it.getString("tipo_actividad_atendida")
             val data = it.getBoolean("data_show")
             val pizar = it.getBoolean("pizarra_smart")
@@ -72,6 +78,16 @@ class RegistroFinalizado : AppCompatActivity() {
             val proy_prestado = it.getBoolean("proyector_interactivo")
             val dato_sala=it.getBoolean("sala_usos_multiples")
             var listaprestados: MutableList<String> = mutableListOf()
+
+            if(atendidas.toFloat() < 1.0){
+                var s = atendidas.toFloat()
+                s = s * 60
+                var valor = s.toInt()
+                atendidas = "${valor} minutos"
+            }
+            else{
+                atendidas = "${atendidas} hora"
+            }
 
             if(data!=false){
                 listaprestados.add("Data show")
@@ -103,6 +119,7 @@ class RegistroFinalizado : AppCompatActivity() {
             observacion.text=dato_observa
             h_inicio.text= fecha
             h_final.text= fecha2
+            h_atendidas.text = atendidas
             actividad.text=act_atendida
             //datashow.text=equipos
             //accesorios.text = datos

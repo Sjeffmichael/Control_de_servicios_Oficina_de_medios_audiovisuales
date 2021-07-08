@@ -136,7 +136,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_2"
                 android:layout_width="match_parent"
-                android:layout_height="410dp"
+                android:layout_height="480dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
@@ -248,6 +248,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="370dp"
+                    android:textColor="#000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tex13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="410dp"
+                    android:gravity="center"
+                    android:background="@color/azul_uni"
+                    android:text="Tiempo de uso"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/total_atendidas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="450dp"
                     android:textColor="#000"
                     android:textSize="15sp" />
 
