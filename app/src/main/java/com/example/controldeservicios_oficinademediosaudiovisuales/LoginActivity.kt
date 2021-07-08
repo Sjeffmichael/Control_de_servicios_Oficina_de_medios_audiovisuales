@@ -67,7 +67,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun action(){
-        startActivity(Intent(this, PrincipalActivity::class.java))
+        val usuario:String = txtUsuario.text.toString()
+        val intent = Intent(this, PrincipalActivity::class.java)
+        intent.putExtra("pos",usuario)
+        startActivity(intent)
+        //startActivity(Intent(this, PrincipalActivity::class.java))
         finish()
     }
     //Cambiar color a negro del textView Registrarse cada que se abre el activity

@@ -10,10 +10,6 @@
 
        <menu>
            <item
-            android:id="@+id/correo"
-            android:title="@string/correo"
-               />
-           <item
             android:id="@+id/Cerrar"
             android:title="@string/cerrar_sesion"
                />

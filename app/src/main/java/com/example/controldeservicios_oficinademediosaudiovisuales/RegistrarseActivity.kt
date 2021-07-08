@@ -94,6 +94,7 @@ class RegistrarseActivity : AppCompatActivity() {
     }
 
     private fun action(){
+        val correo:String = txtCorreo.text.toString()
         val db = FirebaseFirestore.getInstance()
         //agregar datos a documento Usuarios
         db.collection("usuarios").document(txtCorreo.text.toString()).set(
@@ -102,7 +103,10 @@ class RegistrarseActivity : AppCompatActivity() {
                         //"contraseña" to findViewById<TextInputEditText>(R.id.editText_contrasena).text.toString()
                 )
         )
-        startActivity(Intent(this, PrincipalActivity::class.java))
+
+        val intent = Intent(this, PrincipalActivity::class.java)
+        intent.putExtra("pos",correo)
+        startActivity(intent)
         finish()
     }
 

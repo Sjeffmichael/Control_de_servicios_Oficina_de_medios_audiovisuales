@@ -67,7 +67,7 @@ import com.google.firebase.firestore.Query
         val lista_grupo: MutableList<String> = mutableListOf()
         val lista_email: MutableList<String> = mutableListOf()
 
-        val logout:ImageButton=view.findViewById(R.id.imageButton_Usuario)
+        //val logout:ImageButton=view.findViewById(R.id.imageButton_Usuario)
 
         val barra_buscador = view1.findViewById<AutoCompleteTextView>(R.id.textView_accesorios_buscador)
         setear_texto(lugar, barra_buscador, ArrayAdapter(requireContext(), R.layout.list_item_2, lugar))
@@ -93,11 +93,11 @@ import com.google.firebase.firestore.Query
         //logout
         auth = FirebaseAuth.getInstance()
 
-        logout.setOnClickListener{
-            auth.signOut()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
-            activity?.onBackPressed()
-        }
+        //logout.setOnClickListener{
+        //    auth.signOut()
+        //    startActivity(Intent(requireContext(), LoginActivity::class.java))
+        //    activity?.onBackPressed()
+        //}
 
         //Calendario
         lista_tipoActividad.sorted()

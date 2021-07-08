@@ -2,17 +2,20 @@
 package com.example.controldeservicios_oficinademediosaudiovisuales
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Html
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.ImageButton
+import android.view.SubMenu
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.math.E
+import com.google.firebase.firestore.FirebaseFirestore
+
 
 @Suppress("DEPRECATION")
 class PrincipalActivity : AppCompatActivity() {
@@ -70,14 +73,45 @@ class PrincipalActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
         menuInflater.inflate(R.menu.menu_cuenta, menu)
+        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+        val pos = intent.getStringExtra("pos").toString()
+
+
+        menu?.findItem(R.id.Mostrar_correo)!!.setTitle(Html.fromHtml("<font color='#003485'>${pos.toString()}</font>"))
+
+        //val positionOfMenuItem = 0 // or whatever...
+        //inflater.inflate(android.R.menu.your_menu, menu)
+        //val positionOfMenuItem = 0 // or whatever...
+        //val item = menu!!.getItem(1)
+        //val s = SpannableString("My red MenuItem")
+        //s.setSpan(ForegroundColorSpan(Color.RED), 0, s.length, 0)
+        //item.title = s
 
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun setCurrentFragment(fragment:Fragment)=
+    private fun setCurrentFragment(fragment: Fragment)=
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flfragment,fragment)
+            replace(R.id.flfragment, fragment)
             commit()
         }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        auth = FirebaseAuth.getInstance()
+
+        when(item.itemId){
+            R.id.logout_app -> {
+                auth.signOut()
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+            R.id.item_cuenta -> {
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 }

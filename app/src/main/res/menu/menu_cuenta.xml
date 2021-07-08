@@ -6,8 +6,19 @@
         android:id="@+id/item_cuenta"
         android:icon="@drawable/ic_round_account_circle_24"
         android:title="Cuenta"
-        app:showAsAction="always"/>
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/Mostrar_correo"
+                android:title="@string/correo"
+                />
+        </menu>
+
+    </item>
+
     <item
+        android:id="@+id/logout_app"
         android:icon="@drawable/ic_round_logout_24"
         android:title="Salir"
         app:showAsAction="always" />
