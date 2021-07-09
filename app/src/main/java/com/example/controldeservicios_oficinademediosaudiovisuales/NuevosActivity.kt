@@ -28,7 +28,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         //setContentView(R.layout.item_accesorios)
         setSupportActionBar(findViewById(R.id.toolbar_nuevos))
         supportActionBar?.setDisplayShowTitleEnabled(true)
-        supportActionBar?.title = "Nuevo prestamo"
+        supportActionBar?.title = "Nuevo préstamo"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
