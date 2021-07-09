@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Control de servicios - Oficina de medios audiovisuales</string>
+    <string name="app_name">Control De Préstamos</string>
     <string name="tabItem_ingresar">Ingresar</string>
     <string name="tabItem_crear_cuenta">Crear cuenta</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Control De Préstamos</string>
     <string name="tab_text_1">Acceder</string>
     <string name="tab_text_2">Registrarse</string>
     <string name="imageView_logo_uni">logo_uni</string>

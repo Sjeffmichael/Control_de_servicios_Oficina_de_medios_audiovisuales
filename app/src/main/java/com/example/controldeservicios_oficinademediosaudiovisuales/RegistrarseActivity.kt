@@ -59,6 +59,7 @@ class RegistrarseActivity : AppCompatActivity() {
         val confirmar:String = txtconfirmar.text.toString()
 
 
+
         if(!TextUtils.isEmpty(usuario) && !TextUtils.isEmpty(correo) && !TextUtils.isEmpty(contrasena) && !TextUtils.isEmpty(confirmar)) {
             pbRegistrarse.visibility = View.VISIBLE
 
@@ -95,12 +96,31 @@ class RegistrarseActivity : AppCompatActivity() {
     }
 
     private fun action(){
+
+        val usuario:String = txtUsuario.text.toString()
+
+        val caracteres: CharArray = usuario.toCharArray()
+        caracteres[0] = Character.toUpperCase(caracteres[0])
+        val cadena = usuario.length.toInt()
+        var i=0
+
+        while(i<cadena-2){
+            if(caracteres[i] == ' ' || caracteres[i] == '.' || caracteres[i] == ',')
+            {
+                caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1])
+            }
+            i++
+        }
+
+        var usuarioMod = String(caracteres)
+
         val correo:String = txtCorreo.text.toString()
         val db = FirebaseFirestore.getInstance()
         //agregar datos a documento Usuarios
         db.collection("usuarios").document(txtCorreo.text.toString()).set(
                 hashMapOf(
-                        "nombre" to findViewById<TextInputEditText>(R.id.editText_usario).text.toString(),
+                        //"nombre" to findViewById<TextInputEditText>(R.id.editText_usario).text.toString(),
+                        "nombre" to usuarioMod.toString()
                         //"contraseña" to findViewById<TextInputEditText>(R.id.editText_contrasena).text.toString()
                 )
         )

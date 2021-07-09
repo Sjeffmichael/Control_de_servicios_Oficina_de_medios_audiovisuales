@@ -166,6 +166,24 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                 ver=false
             }
             if (ver == true) {
+
+                val texto=nombre_docente.text.toString()
+                val caracteres: CharArray = nombre_docente.text.toString().toCharArray()
+                caracteres[0] = Character.toUpperCase(caracteres[0])
+                val cadena = texto.length.toInt()
+                var i=0
+
+                while(i<cadena-2){
+                    if(caracteres[i] == ' ' || caracteres[i] == '.' || caracteres[i] == ',')
+                    {
+                        caracteres[i + 1] = Character.toUpperCase(caracteres[i + 1])
+                    }
+                    i++
+                }
+
+                var textoMod = String(caracteres)
+
+
                 //Guarda los datos en la base de datos
                 db.collection("control_servicios").document().set(
                         hashMapOf(
@@ -180,7 +198,8 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                                 "grupo" to grupo.text.toString().toUpperCase(),
                                 "observacion" to null,
                                 //findViewById<EditText>(R.id.editTextTextMultiLine_observacion).text.toString(),
-                                "nombre_docente" to nombre_docente.text.toString(),
+                                //"nombre_docente" to nombre_docente.text.toString(),
+                                "nombre_docente" to textoMod.toString(),
                                 "carne_docente" to findViewById<AutoCompleteTextView>(R.id.editText_carneDocente).text.toString(),
                                 "email_tecnico" to auth?.email.toString(),
                                 "hora_inicio" to FieldValue.serverTimestamp(),
