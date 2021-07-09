@@ -3,7 +3,6 @@ package com.example.controldeservicios_oficinademediosaudiovisuales
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Patterns
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -14,7 +13,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.regex.Matcher
 import java.util.regex.Pattern
+import kotlin.properties.Delegates
 
 
 class RegistrarseActivity : AppCompatActivity() {
@@ -27,8 +28,8 @@ class RegistrarseActivity : AppCompatActivity() {
     private lateinit var dbReferences: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseDatabase
-    var verificacion:Boolean=true
-
+    private var verificacion2 by Delegates.notNull<Boolean>()
+    private var verificacion by Delegates.notNull<Boolean>()
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -78,10 +79,10 @@ class RegistrarseActivity : AppCompatActivity() {
                                     if(contrasena.length < 6){
                                         txtContrasena.setError("Contraseña muy corta")
                                     }
-                                    verificarEmailInFirebase(correo)
-                                    if(verificacion==true){
-                                        txtCorreo.setError("Correo en uso")
+                                    if(validarCorreo(correo)==false){
+                                        txtCorreo.setError("Verifique su correo")
                                     }
+
                                     Toast.makeText(this, "Error al registrarse", Toast.LENGTH_LONG).show()
                                     pbRegistrarse.visibility = View.GONE
                                 }
@@ -105,7 +106,7 @@ class RegistrarseActivity : AppCompatActivity() {
         )
 
         val intent = Intent(this, PrincipalActivity::class.java)
-        intent.putExtra("pos",correo)
+        intent.putExtra("pos", correo)
         startActivity(intent)
         finish()
     }
@@ -116,36 +117,33 @@ class RegistrarseActivity : AppCompatActivity() {
                     if(task.isSuccessful){
                         Toast.makeText(this, "Registrado exitosamente", Toast.LENGTH_LONG).show()
                     }else{
-                        txtCorreo.setError("verifique su correo")
                         Toast.makeText(this, "Error al registrarse", Toast.LENGTH_LONG).show()
                     }
 
                 }
     }
 
-    fun verificarEmailInFirebase(email: String?) {
+
+    fun validarCorreo(correo: String):Boolean{
+        var patron : Pattern = Pattern.compile(" ^ [_ A-Za-z0-9- \\ +] + ( \\ . [_ A-Za-z0-9 -] +) * @ [A-Za-z0-9 -] + ( \\ . [A-Za-z0-9] +) * ( \\ . [A-Za-z] {2,}) $ ")
+        var comparador : Matcher = patron.matcher(correo)
+        return comparador.find()
+    }
+
+    fun verificarEmailInFirebase(email: String?):Boolean {
         FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email!!)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val check = !task.result!!.signInMethods!!.isEmpty()
                         if (check) {
                             verificacion=true
+                            Toast.makeText(applicationContext, "El email esta en uso", Toast.LENGTH_LONG).show()
                         } else {
                             verificacion=false
+                            Toast.makeText(applicationContext, "El email no esta en uso, por ende el usuario no existe", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
+        return verificacion
     }
-
-    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-    fun isValidEmail(email: String) : Boolean  {
-        if (email.matches(emailPattern.toRegex())) {
-            verificacion=true
-            return true
-        } else {
-            verificacion=false
-            return false
-        }
-    }
-
 }
