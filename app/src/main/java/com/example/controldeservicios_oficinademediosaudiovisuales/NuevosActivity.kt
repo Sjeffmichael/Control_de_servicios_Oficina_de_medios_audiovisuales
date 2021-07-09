@@ -8,6 +8,7 @@ import android.view.View.OnTouchListener
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.santalu.maskedittext.MaskEditText
@@ -18,6 +19,8 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
 
     var elementos: MutableList<String> = mutableListOf()
     private var arrayAdapter:ArrayAdapter<String>?=null
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val collectionReference: CollectionReference = db.collection("control_servicios")
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +28,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
         //setContentView(R.layout.item_accesorios)
         setSupportActionBar(findViewById(R.id.toolbar_nuevos))
         supportActionBar?.setDisplayShowTitleEnabled(true)
-        supportActionBar?.title = "Nuevo préstamo"
+        supportActionBar?.title = "Nuevo prestamo"
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -187,7 +190,7 @@ class NuevosActivity : AppCompatActivity() ,AdapterView.OnItemClickListener{
                 )
                 Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show()
                 val fragmentoEspera=EsperaActivity()
-                fragmentoEspera.setUpRecyclerView()
+                fragmentoEspera.setUpRecyclerView(collectionReference.whereEqualTo("hora_final", null))
                 finish()
             }
         }
